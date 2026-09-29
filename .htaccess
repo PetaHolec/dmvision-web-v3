@@ -1,0 +1,77 @@
+# D&M Vision – nastavení Apache (hosting WEDOS)
+# Kanonická adresa webu: https://dmvision.cz (bez www)
+
+Options -Indexes
+DirectoryIndex index.html index.php
+ErrorDocument 404 /404.html
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # www → bez www
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+  # http → https (X-Forwarded-Proto kvůli WEDOS Global / CDN, aby nevznikla smyčka)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # /neco/index.html → /neco/
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [L,R=301]
+
+  # soubory ze starého webu → nové stránky
+  RewriteRule ^(styles\.css|script\.js)$ / [L,R=301]
+  RewriteRule ^assets/(hodyopatovice|rakfest|davidmalek|pleskotlarska|plesmendlak|friendsparty|samsung-sprint|hackathon|obecricany)\.(jpe?g|png)$ /realizace/ [L,R=301,NC]
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+  AddType application/manifest+json .webmanifest
+  AddType text/plain .txt
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/javascript text/javascript application/json application/manifest+json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+  # CSS a JS si prohlížeč pokaždé ověří (a stáhne jen při změně), takže úpravy se projeví hned
+  ExpiresByType text/css "access plus 0 seconds"
+  ExpiresByType application/javascript "access plus 0 seconds"
+  ExpiresByType text/javascript "access plus 0 seconds"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/avif "access plus 6 months"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType application/manifest+json "access plus 1 week"
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  # HSTS zapněte až po ověření, že HTTPS funguje na všech adresách:
+  # Header always set Strict-Transport-Security "max-age=31536000"
+  <FilesMatch "\.(html|css|js)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+# skryté soubory (.git, .env apod.) nejsou veřejně dostupné
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# složky .git a .github (náhled na GitHub Pages) nejsou veřejně dostupné
+RedirectMatch 404 "/\.(git|github)(/|$)"

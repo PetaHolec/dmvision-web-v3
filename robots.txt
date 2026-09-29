@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /odeslat-poptavku.php
+
+Sitemap: https://dmvision.cz/sitemap.xml

@@ -1,0 +1,40 @@
+# Náhled webu na GitHub Pages: po každém pushi do main se web zveřejní na
+# https://petaholec.github.io/dmvision-web-v2/
+# Náhled nemá být na Googlu (duplicita s dmvision.cz), proto dostane noindex,
+# robots.txt vše zakáže a vynechá se PHP (Pages ho neumí spustit).
+name: Náhled na GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  nahled:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Připravit náhled (noindex, bez PHP)
+        run: python3 .github/nahled.py _site
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
