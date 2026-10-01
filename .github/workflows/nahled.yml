@@ -1,5 +1,5 @@
 # Náhled webu na GitHub Pages: po každém pushi do main se web zveřejní na
-# https://petaholec.github.io/dmvision-web-v2/
+# https://petaholec.github.io/dmvision-web-v3/
 # Náhled nemá být na Googlu (duplicita s dmvision.cz), proto dostane noindex,
 # robots.txt vše zakáže a vynechá se PHP (Pages ho neumí spustit).
 name: Náhled na GitHub Pages

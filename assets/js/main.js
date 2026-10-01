@@ -30,20 +30,14 @@
   window.addEventListener("resize", () => requestAnimationFrame(runScroll));
 
   /* ---------- hlavička: pozadí po odrolování, ukazatel průběhu; schovává se jen na mobilu ---------- */
-  /* Tlačítko Poptávka v hlavičce se ukáže, až z obrazovky zmizí poptávkové tlačítko v úvodu stránky. */
   const hdr = $("[data-hdr]");
   if (hdr) {
-    const heroCta = $('.hero__actions a[href*="poptavka"], .phero__actions a[href*="poptavka"]');
     let lastY = window.scrollY;
     onScroll(() => {
       const y = window.scrollY;
       const max = root.scrollHeight - window.innerHeight;
       hdr.classList.toggle("is-scrolled", y > 20);
       hdr.style.setProperty("--p", max > 0 ? (y / max).toFixed(4) : "0");
-      if (heroCta) {
-        const r = heroCta.getBoundingClientRect();
-        hdr.classList.toggle("is-cta-off", r.bottom > hdr.offsetHeight && r.top < window.innerHeight);
-      }
       if (!mobile.matches) hdr.classList.remove("is-hidden");
       else if (y > 400 && y > lastY + 6 && !document.body.classList.contains("menu-open")) hdr.classList.add("is-hidden");
       else if (y < lastY - 6 || y <= 400) hdr.classList.remove("is-hidden");
