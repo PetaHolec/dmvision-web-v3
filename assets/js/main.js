@@ -85,12 +85,14 @@
   $$("details[data-desktop-open]").forEach((d) => {
     const sum = d.querySelector(":scope > summary");
     const sync = () => {
-      const desktop = !mobile.matches;
-      d.open = desktop;
-      if (sum) sum.tabIndex = desktop ? -1 : 0;
+      d.open = !mobile.matches;
     };
     sync();
     mobile.addEventListener("change", sync);
+    // na počítači se nesbaluje (bez tabindex na <summary> – Chrome ho hlásí jako chybu přístupnosti)
+    if (sum) sum.addEventListener("click", (e) => {
+      if (!mobile.matches) e.preventDefault();
+    });
     d.addEventListener("toggle", () => {
       if (!mobile.matches && !d.open) d.open = true;
     });
