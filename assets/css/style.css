@@ -3081,6 +3081,21 @@ details[open] > summary .plus {
   font-size: 13.5px;
 }
 
+.ftr__credit {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ftr .ftr__credit a {
+  color: var(--sky);
+}
+
+.ftr .ftr__credit a:hover {
+  color: #fff;
+}
+
 .ftr__up {
   display: inline-flex;
   align-items: center;
