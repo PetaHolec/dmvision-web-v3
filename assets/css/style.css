@@ -1833,13 +1833,19 @@ details[open] > summary .plus {
 
   .svc__all {
     display: block;
+    grid-column: 1 / -1;
   }
 
   .svc__all .svc__item {
     display: grid;
+    grid-auto-flow: column;
     place-content: center;
     justify-items: center;
-    gap: 12px;
+    align-items: center;
+    gap: 16px;
+    aspect-ratio: auto;
+    min-height: 88px;
+    padding: 0 18px;
     background: var(--blue);
   }
 
@@ -1858,6 +1864,147 @@ details[open] > summary .plus {
     transform: none;
     background: #fff;
     color: var(--blue);
+  }
+}
+
+/* ---------------------------------------------------------------- tři stupně: 1 reklamní reels → Reels Day → kompletní marketing */
+.tiers {
+  margin-top: clamp(56px, 7vw, 104px);
+}
+
+.tiers__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 48px;
+  margin-bottom: clamp(22px, 2.6vw, 34px);
+}
+
+.tiers__title {
+  font: 800 clamp(30px, 3.2vw, 52px)/.95 var(--display);
+  text-transform: uppercase;
+}
+
+.blue .tiers__title em {
+  color: var(--navy);
+  font-style: normal;
+}
+
+.tiers__note {
+  max-width: 36ch;
+  color: rgba(255, 255, 255, .85);
+}
+
+.tiers__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.tier {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 2.4vw, 36px);
+  border: 1px solid rgba(255, 255, 255, .32);
+  background: rgba(6, 17, 41, .12);
+  color: rgba(255, 255, 255, .88);
+}
+
+.tier--top {
+  border-color: var(--navy);
+  background: var(--navy);
+  box-shadow: 0 24px 60px -24px rgba(6, 17, 41, .7);
+}
+
+.tier--top .vf {
+  inset: 12px;
+  --a: 20px;
+  --c: var(--sky);
+}
+
+.tier__tag {
+  align-self: flex-start;
+  color: #fff;
+  font: 800 11px/1 var(--sans);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.tier__tag::before {
+  content: "[ ";
+}
+
+.tier__tag::after {
+  content: " ]";
+}
+
+.tier--top .tier__tag {
+  color: var(--sky);
+}
+
+.tier__t {
+  margin-top: 18px;
+  font: 800 clamp(30px, 2.6vw, 42px)/.95 var(--display);
+  text-transform: uppercase;
+}
+
+.tier__sub {
+  margin-top: 12px;
+}
+
+.tier__list {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, .22);
+  font-size: 15px;
+}
+
+.tier__list li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.tier__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: 7px;
+  height: 7px;
+  background: #fff;
+}
+
+.tier--top .tier__list li::before {
+  background: var(--sky);
+}
+
+.tier__cta {
+  position: relative;
+  z-index: 3;
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+.tier__cta .btn {
+  width: 100%;
+  justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  .tiers__head {
+    display: block;
+  }
+
+  .tiers__note {
+    margin-top: 12px;
+  }
+
+  .tiers__grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -4198,12 +4345,12 @@ details[open] > summary .plus {
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
-.tiles--all li:nth-child(-n+3) {
-  grid-column: span 4;
+.tiles--all li:nth-child(-n+2) {
+  grid-column: span 6;
 }
 
-.tiles--all li:nth-child(n+4) {
-  grid-column: span 3;
+.tiles--all li:nth-child(n+3) {
+  grid-column: span 4;
 }
 
 .tile {
@@ -4217,8 +4364,8 @@ details[open] > summary .plus {
   text-decoration: none;
 }
 
-.tiles--all li:nth-child(n+4) .tile {
-  aspect-ratio: 3 / 3.4;
+.tiles--all li:nth-child(-n+2) .tile {
+  aspect-ratio: 16 / 9;
 }
 
 .tile__img {
