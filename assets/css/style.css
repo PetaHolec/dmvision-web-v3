@@ -1872,6 +1872,10 @@ details[open] > summary .plus {
   margin-top: clamp(56px, 7vw, 104px);
 }
 
+.tiers-sec .tiers {
+  margin-top: 0;
+}
+
 .tiers__head {
   display: flex;
   align-items: flex-end;
