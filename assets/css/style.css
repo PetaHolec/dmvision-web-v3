@@ -3027,48 +3027,10 @@ details[open] > summary .plus {
 /* ---------------------------------------------------------------- závěr úvodu (tmavě modrá, běžící obrysový text) */
 .cta {
   position: relative;
-  padding: clamp(44px, 6vw, 88px) 0 clamp(56px, 7vw, 104px);
+  padding: var(--sec) 0 clamp(56px, 7vw, 104px);
   background: var(--navy);
   color: rgba(255, 255, 255, .8);
   overflow: hidden;
-}
-
-.marquee {
-  overflow: hidden;
-}
-
-.marquee__track {
-  display: flex;
-  width: max-content;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .marquee__track {
-    animation: mq 34s linear infinite;
-  }
-}
-
-.marquee__run {
-  display: flex;
-  align-items: center;
-  flex: none;
-}
-
-.marquee--cta span {
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(147, 197, 253, .6);
-  font: 900 clamp(64px, 10vw, 168px)/1.05 var(--display);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.marquee--cta i {
-  flex: none;
-  width: .26em;
-  height: .26em;
-  margin: 0 .4em;
-  background: var(--blue);
-  font-size: clamp(64px, 10vw, 168px);
 }
 
 .cta__in {
@@ -3076,7 +3038,6 @@ details[open] > summary .plus {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(32px, 5vw, 80px);
   align-items: end;
-  margin-top: clamp(28px, 4vw, 56px);
 }
 
 .cta__title {
@@ -3094,11 +3055,6 @@ details[open] > summary .plus {
 @media (max-width: 760px) {
   .cta__in {
     grid-template-columns: 1fr;
-  }
-
-  .marquee--cta span,
-  .marquee--cta i {
-    font-size: 60px;
   }
 }
 
