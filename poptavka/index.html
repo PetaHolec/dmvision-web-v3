@@ -196,14 +196,14 @@
         </div>
 
         <nav class="menu__nav" aria-label="Menu">
-          <a href="../" style="--i:1"><span class="menu__n">01</span>Úvod</a>
-          <a href="../sluzby/" style="--i:2"><span class="menu__n">02</span>Služby</a>
-          <a href="../realizace/" style="--i:3"><span class="menu__n">03</span>Realizace</a>
-          <a href="../galerie/" style="--i:4"><span class="menu__n">04</span>Galerie</a>
-          <a href="../reference/" style="--i:5"><span class="menu__n">05</span>Reference</a>
-          <a href="../o-nas/" style="--i:6"><span class="menu__n">06</span>O&nbsp;nás</a>
-          <a href="../kontakt/" style="--i:7"><span class="menu__n">07</span>Kontakt</a>
-          <a href="../poptavka/" aria-current="page" style="--i:8"><span class="menu__n">08</span>Poptávka</a>
+          <a href="../"><span class="menu__n">01</span>Úvod</a>
+          <a href="../sluzby/"><span class="menu__n">02</span>Služby</a>
+          <a href="../realizace/"><span class="menu__n">03</span>Realizace</a>
+          <a href="../galerie/"><span class="menu__n">04</span>Galerie</a>
+          <a href="../reference/"><span class="menu__n">05</span>Reference</a>
+          <a href="../o-nas/"><span class="menu__n">06</span>O&nbsp;nás</a>
+          <a href="../kontakt/"><span class="menu__n">07</span>Kontakt</a>
+          <a href="../poptavka/" aria-current="page"><span class="menu__n">08</span>Poptávka</a>
         </nav>
         <p class="menu__label">Služby</p>
         <ul class="menu__svc">
@@ -254,13 +254,13 @@
               enctype="multipart/form-data"
               data-ajax
               data-success="../dekujeme/"
+              data-wizard
             >
               <h2 class="form__title">Poptávkový formulář</h2>
-              <p class="form__intro">
-                Pole bez označení jsou povinná. Čím víc toho víme, tím přesnější nabídku pošleme.
-              </p>
-              <fieldset class="choices">
-                <legend>Co potřebujete? <span>(vyberte jednu nebo víc možností)</span></legend>
+              <p class="form__intro" data-step="1">Pole bez označení jsou povinná.</p>
+
+              <fieldset class="fstep choices" data-step="1">
+                <legend class="fstep__h">Co potřebujete? <span>Vyberte jednu nebo víc možností.</span></legend>
                 <div class="choices__grid">
                   <label class="choice">
                     <input type="checkbox" name="sluzby[]" value="Natáčení videa" data-key="nataceni">
@@ -466,100 +466,73 @@
                 </div>
               </fieldset>
 
-              <div class="form__grid">
-                <div class="field">
-                  <label for="f-jmeno">Jméno a&nbsp;příjmení</label>
-                  <input id="f-jmeno" name="jmeno" type="text" autocomplete="name" required>
+              <fieldset class="fstep" data-step="2">
+                <legend class="fstep__h">Kdy a&nbsp;kde? <span>Nepovinné, klidně přeskočte.</span></legend>
+                <div class="form__grid">
+                  <div class="field">
+                    <label for="f-termin">Termín <span>(nepovinné)</span></label>
+                    <input id="f-termin" name="termin" type="text" placeholder="Např. do konce listopadu">
+                  </div>
+                  <div class="field">
+                    <label for="f-lokalita">Místo natáčení <span>(nepovinné)</span></label>
+                    <input id="f-lokalita" name="lokalita" type="text" placeholder="Např. Brno, Praha">
+                  </div>
                 </div>
-                <div class="field">
-                  <label for="f-firma">Firma nebo organizace <span>(nepovinné)</span></label>
-                  <input id="f-firma" name="firma" type="text" autocomplete="organization">
-                </div>
-                <div class="field">
-                  <label for="f-email">E-mail</label>
-                  <input
-                    id="f-email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="jmeno@firma.cz"
-                    required
-                  >
-                </div>
-                <div class="field">
-                  <label for="f-telefon">Telefon <span>(nepovinné)</span></label>
-                  <input id="f-telefon" name="telefon" type="tel" autocomplete="tel">
-                </div>
-                <div class="field">
-                  <label for="f-termin">Termín <span>(nepovinné)</span></label>
-                  <input id="f-termin" name="termin" type="text" placeholder="Např. do konce listopadu">
-                </div>
-                <div class="field">
-                  <label for="f-lokalita">Místo natáčení <span>(nepovinné)</span></label>
-                  <input id="f-lokalita" name="lokalita" type="text" placeholder="Např. Brno, Praha">
-                </div>
-                <div class="field">
-                  <label for="f-rozpocet">Orientační rozpočet <span>(nepovinné)</span></label>
-                  <select id="f-rozpocet" name="rozpocet">
-                    <option value="">Vyberte</option>
-                    <option value="Zatím nevím">Zatím nevím</option>
-                    <option value="Do 10 000 Kč">Do 10&nbsp;000&nbsp;Kč</option>
-                    <option value="10 000–30 000 Kč">10&nbsp;000–30&nbsp;000&nbsp;Kč</option>
-                    <option value="30 000–60 000 Kč">30&nbsp;000–60&nbsp;000&nbsp;Kč</option>
-                    <option value="60 000–100 000 Kč">60&nbsp;000–100&nbsp;000&nbsp;Kč</option>
-                    <option value="Nad 100 000 Kč">Nad 100&nbsp;000&nbsp;Kč</option>
-                  </select>
-                </div>
+              </fieldset>
 
-                <div class="field field--file">
-                  <span class="field__label">Brief nebo podklady <span>(nepovinné)</span></span>
-                  <input
-                    id="f-prilohy"
-                    class="file__input"
-                    type="file"
-                    name="prilohy[]"
-                    multiple
-                    accept=".pdf,.doc,.docx,.ppt,.pptx,.key,.odt,.txt,.jpg,.jpeg,.png,.webp,.heic,.zip"
-                  >
-                  <label class="file" for="f-prilohy">
-                    <span class="file__ico">
-                      <svg
-                        class="ico"
-                        aria-hidden="true"
-                        focusable="false"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="square"
-                        stroke-linejoin="miter"
-                      >
-                        <path d="M21 15v6H3v-6"/>
-                        <path d="m17 8-5-5-5 5"/>
-                        <path d="M12 3v12"/>
-                      </svg>
-                    </span>
-                    <span class="file__txt">
-                      <strong data-file-label>Nahrát soubory</strong>
-                      <span>PDF, Word, PowerPoint, obrázky nebo ZIP · max. 3 soubory, dohromady 10&nbsp;MB</span>
-                    </span>
-                  </label>
-                </div>
+              <fieldset class="fstep" data-step="3">
+                <legend class="fstep__h">Popište zadání <span>Čím víc toho víme, tím přesnější nabídku pošleme.</span></legend>
+                <div class="form__grid">
+                  <div class="field field--full">
+                    <label class="sr-only" for="f-zprava">Popis zadání</label>
+                    <textarea
+                      id="f-zprava"
+                      name="zprava"
+                      rows="4"
+                      placeholder="Co chcete natočit nebo nafotit, pro koho a kde se to použije? Máte inspiraci?"
+                      required
+                    ></textarea>
+                  </div>
 
-                <div class="field field--full">
-                  <label for="f-zprava">Popište zadání</label>
-                  <textarea
-                    id="f-zprava"
-                    name="zprava"
-                    rows="4"
-                    placeholder="Co chcete natočit nebo nafotit, pro koho a kde se to použije? Máte inspiraci?"
-                    required
-                  ></textarea>
+                  <div class="field field--file">
+                    <span class="field__label">Brief nebo podklady <span>(nepovinné)</span></span>
+                    <input
+                      id="f-prilohy"
+                      class="file__input"
+                      type="file"
+                      name="prilohy[]"
+                      multiple
+                      accept=".pdf,.doc,.docx,.ppt,.pptx,.key,.odt,.txt,.jpg,.jpeg,.png,.webp,.heic,.zip"
+                    >
+                    <label class="file" for="f-prilohy">
+                      <span class="file__ico">
+                        <svg
+                          class="ico"
+                          aria-hidden="true"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="square"
+                          stroke-linejoin="miter"
+                        >
+                          <path d="M21 15v6H3v-6"/>
+                          <path d="m17 8-5-5-5 5"/>
+                          <path d="M12 3v12"/>
+                        </svg>
+                      </span>
+                      <span class="file__txt">
+                        <strong data-file-label>Nahrát soubory</strong>
+                        <span>PDF, Word, PowerPoint, obrázky nebo ZIP · max. 3 soubory, dohromady 10&nbsp;MB</span>
+                      </span>
+                    </label>
+                  </div>
                 </div>
-              </div>
+              </fieldset>
 
-              <fieldset class="choices choices--radio">
-                <legend>Jak vás máme kontaktovat?</legend>
+              <fieldset class="fstep choices choices--radio" data-step="4">
+                <legend class="fstep__h">Jak vás máme kontaktovat?</legend>
                 <div class="choices__grid">
                   <label class="choice">
                     <input type="radio" name="kontakt" value="E-mailem" checked>
@@ -574,6 +547,35 @@
                 </div>
               </fieldset>
 
+              <fieldset class="fstep" data-step="5">
+                <legend class="fstep__h">Kontaktní údaje</legend>
+                <div class="form__grid">
+                  <div class="field">
+                    <label for="f-jmeno">Jméno a&nbsp;příjmení</label>
+                    <input id="f-jmeno" name="jmeno" type="text" autocomplete="name" required>
+                  </div>
+                  <div class="field">
+                    <label for="f-firma">Firma nebo organizace <span>(nepovinné)</span></label>
+                    <input id="f-firma" name="firma" type="text" autocomplete="organization">
+                  </div>
+                  <div class="field">
+                    <label for="f-email">E-mail</label>
+                    <input
+                      id="f-email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      placeholder="jmeno@firma.cz"
+                      required
+                    >
+                  </div>
+                  <div class="field">
+                    <label for="f-telefon">Telefon <span>(nepovinné)</span></label>
+                    <input id="f-telefon" name="telefon" type="tel" autocomplete="tel">
+                  </div>
+                </div>
+              </fieldset>
+
               <div class="hp" aria-hidden="true">
                 <label for="f-web">Nevyplňujte</label><input
                   id="f-web"
@@ -584,11 +586,11 @@
                 >
               </div>
               <input type="hidden" name="elapsed" value="0"><input type="hidden" name="zdroj" value="/poptavka/">
-              <p class="form__note">
+              <p class="form__note" data-step="5">
                 Odesláním berete na vědomí <a href="../zasady-ochrany-osobnich-udaju/">zpracování osobních údajů</a> za
                 účelem vyřízení poptávky.
               </p>
-              <button class="btn btn--submit" type="submit">
+              <button class="btn btn--submit" type="submit" data-step="5">
                 <span class="btn__roll"><span data-t="Odeslat poptávku">Odeslat poptávku</span></span>
                 <svg
                   class="ico"

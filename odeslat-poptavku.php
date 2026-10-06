@@ -102,7 +102,6 @@ $jmeno    = field('jmeno', 120);
 $firma    = field('firma', 160);
 $email    = field('email', 160);
 $telefon  = field('telefon', 40);
-$rozpocet = field('rozpocet', 60);
 $termin   = field('termin', 160);
 $lokalita = field('lokalita', 160);
 $kontakt  = field('kontakt', 20);
@@ -185,7 +184,6 @@ $lines = [
     'Telefon:     ' . ($telefon !== '' ? $telefon : $dash),
     'Kontaktovat: ' . ($kontakt !== '' ? $kontakt : $dash),
     'Služby:      ' . ($sluzby ? implode(', ', $sluzby) : $dash),
-    'Rozpočet:    ' . ($rozpocet !== '' ? $rozpocet : $dash),
     'Termín:      ' . ($termin !== '' ? $termin : $dash),
     'Místo:       ' . ($lokalita !== '' ? $lokalita : $dash),
     'Přílohy:     ' . ($attachments ? implode(', ', array_column($attachments, 'name')) : $dash),
