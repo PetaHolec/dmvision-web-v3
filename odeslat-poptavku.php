@@ -101,6 +101,7 @@ if (isset($_POST['elapsed']) && $_POST['elapsed'] !== '' && (int) $_POST['elapse
 $jmeno    = field('jmeno', 120);
 $firma    = field('firma', 160);
 $obec     = field('obec', 160);
+$balicek  = field('balicek', 80);
 $email    = field('email', 160);
 $telefon  = field('telefon', 40);
 $termin   = field('termin', 160);
@@ -197,6 +198,10 @@ $lines = [
     'Odesláno ' . date('j. n. Y H:i') . ' ze stránky ' . ($zdroj !== '' ? $zdroj : $dash),
     'Odpovědět můžete přímo na tento e-mail.',
 ];
+// balíček posílá jen dotazník na stránce pro obce – u ostatních formulářů řádek nebude
+if ($balicek !== '') {
+    array_splice($lines, 5, 0, 'Balíček:     ' . $balicek);
+}
 $body = implode("\r\n", $lines);
 $subject = 'Poptávka z webu: ' . ($sluzby ? implode(', ', $sluzby) : ($obec !== '' ? 'obce a politika' : 'obecná')) . ' – ' . $jmeno;
 

@@ -126,6 +126,63 @@
     });
   }
 
+  /* ---------- odkaz na stránku pro obce: nejdřív výběr obec / politická strana ---------- */
+  // stránka pro obce se pak otevře rovnou v té verzi (?pro=…); přepínač na ní zůstává
+  const obceLinks = $$("[data-obce]");
+  if (obceLinks.length && typeof HTMLDialogElement === "function") {
+    const svg = (paths) =>
+      `<svg class="ico" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">${paths}</svg>`;
+    const arrow = svg('<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>');
+    let pick = null;
+    let opener = null;
+    const build = () => {
+      pick = document.createElement("dialog");
+      pick.className = "pick";
+      pick.setAttribute("aria-labelledby", "pick-title");
+      pick.innerHTML = `
+        <div class="pick__in">
+          <button class="pick__close" type="button" aria-label="Zavřít">${svg('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>')}</button>
+          <p class="pick__eyebrow">D&amp;M Vision pro obce a&nbsp;politické strany</p>
+          <h2 class="pick__title" id="pick-title">Pro koho hledáte video?</h2>
+          <div class="pick__opts">
+            <a class="pick__opt" data-pro="obce">
+              <span class="pick__name">Obec</span>
+              <span class="pick__desc">Videozpravodaje, reportáže a&nbsp;prezentační videa</span>
+              ${arrow}
+            </a>
+            <a class="pick__opt" data-pro="politika">
+              <span class="pick__name">Politická strana</span>
+              <span class="pick__desc">Volební spoty a&nbsp;videa pro kampaň</span>
+              ${arrow}
+            </a>
+          </div>
+          <p class="pick__note">Volbu můžete na stránce kdykoli změnit.</p>
+        </div>`;
+      document.body.append(pick);
+      $(".pick__close", pick).addEventListener("click", () => pick.close());
+      pick.addEventListener("click", (e) => {
+        if (e.target === pick) pick.close();
+      });
+      pick.addEventListener("close", () => {
+        // odkaz z menu už je schovaný – fokus pak na tlačítko Menu
+        (opener && opener.offsetParent ? opener : toggle)?.focus();
+      });
+    };
+    obceLinks.forEach((a) => a.addEventListener("click", (e) => {
+      // do nové karty (ctrl / cmd / prostřední tlačítko) rovnou stránka
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+      e.preventDefault();
+      if (!pick) build();
+      const base = a.href.split(/[?#]/)[0];
+      $$(".pick__opt", pick).forEach((o) => {
+        o.href = `${base}?pro=${o.dataset.pro}`;
+      });
+      opener = a;
+      pick.showModal();
+      $(".pick__opt", pick).focus();
+    }));
+  }
+
   /* ---------- mobil: obsah na rozbalení ---------- */
   // <details data-desktop-open>: na počítači otevřené (jako běžný obsah), na mobilu sbalené pod tlačítkem
   $$("details[data-desktop-open]").forEach((d) => {

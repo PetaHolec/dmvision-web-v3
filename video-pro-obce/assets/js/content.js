@@ -35,7 +35,8 @@ window.DMV = {
   /* --- Balíčky -----------------------------------------------------------
      price: text ceny, např. "25 000 Kč" (+ priceNote "měsíčně"); null = „Cena na míru“
      items: obsah balíčku – text, nebo { t: "název", d: "popis" }
-     prefill: text, který se po kliknutí vloží do zprávy ve formuláři */
+     prefill: text, který se po kliknutí vloží do zprávy ve formuláři
+     (vybraný je vždy první balíček – Standard) */
   packages: [
     {
       id: "obec",
@@ -93,7 +94,9 @@ window.DMV = {
      image:   náhled 16:9 (min. 1600×900, webp/avif); null = placeholder
      video:   { youtube: "ID" } | { mp4: "cesta.mp4" } | { instagram: "URL příspěvku" } | null
               (Instagram se otevírá v novém okně, nic se nenačítá z Meta předem)
-     todo:    co je potřeba doplnit (zobrazí se v placeholderu) */
+     todo:    co je potřeba doplnit (zobrazí se v placeholderu)
+     videoOnly: true = místo textu jen samotné video (popisek „caption“ pod ním)
+     hideName:  true = jméno se nikde nezobrazí (ani v pásu „Natáčeli jsme pro“) – chybí souhlas */
   projects: [
     {
       id: "ricany",
@@ -117,6 +120,8 @@ window.DMV = {
     },
     {
       id: "modrice",
+      videoOnly: true,
+      caption: "Modřice",
       group: "obce",
       client: "Modřice",
       kind: "Město",
@@ -130,6 +135,8 @@ window.DMV = {
     },
     {
       id: "oresin",
+      videoOnly: true,
+      caption: "Brno-Ořešín",
       group: "obce",
       client: "Brno-Ořešín",
       kind: "Městská část Brna",
@@ -143,6 +150,9 @@ window.DMV = {
     },
     {
       id: "chvatal",
+      videoOnly: true,
+      caption: "Volební video",
+      hideName: true,
       group: "volby",
       client: "Filip Chvátal",
       kind: "Kandidát",
@@ -157,6 +167,9 @@ window.DMV = {
     },
     {
       id: "kol",
+      videoOnly: true,
+      caption: "Volební videa",
+      hideName: true,
       group: "volby",
       client: "Kuřimská občanská liga · Drago Sukalovský",
       kind: "Politický subjekt a kandidát",
