@@ -100,6 +100,7 @@ if (isset($_POST['elapsed']) && $_POST['elapsed'] !== '' && (int) $_POST['elapse
 
 $jmeno    = field('jmeno', 120);
 $firma    = field('firma', 160);
+$obec     = field('obec', 160);
 $email    = field('email', 160);
 $telefon  = field('telefon', 40);
 $termin   = field('termin', 160);
@@ -180,6 +181,7 @@ $lines = [
     str_repeat('=', 44),
     'Jméno:       ' . $jmeno,
     'Firma:       ' . ($firma !== '' ? $firma : $dash),
+    'Obec/strana: ' . ($obec !== '' ? $obec : $dash),
     'E-mail:      ' . $email,
     'Telefon:     ' . ($telefon !== '' ? $telefon : $dash),
     'Kontaktovat: ' . ($kontakt !== '' ? $kontakt : $dash),
@@ -196,7 +198,7 @@ $lines = [
     'Odpovědět můžete přímo na tento e-mail.',
 ];
 $body = implode("\r\n", $lines);
-$subject = 'Poptávka z webu: ' . ($sluzby ? implode(', ', $sluzby) : 'obecná') . ' – ' . $jmeno;
+$subject = 'Poptávka z webu: ' . ($sluzby ? implode(', ', $sluzby) : ($obec !== '' ? 'obce a politika' : 'obecná')) . ' – ' . $jmeno;
 
 $headers = [
     'From: ' . mime_header($config['from_name']) . ' <' . $config['from'] . '>',
