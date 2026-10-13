@@ -628,6 +628,36 @@ html:not(.js) .nav { position: static; opacity: 1; visibility: visible; transfor
 .ftr__bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 20px 28px; border-top: 1px solid rgba(255,255,255,.12); font-size: .8125rem; }
 .ftr__bar p { margin: 0; }
 .ftr__bar a { color: rgba(255,255,255,.75); }
+.ftr__legal { margin: 0; color: rgba(255,255,255,.75); }
+.link-btn { padding: 0; border: 0; background: none; color: rgba(255,255,255,.75); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.link-btn:hover { color: #fff; }
+
+/* lišta cookies (skript sdílený s hlavním webem: ../assets/js/cookies.js) */
+.cookie-bar { position: fixed; left: 16px; bottom: 16px; z-index: 120; max-width: 440px; padding: 22px; background: var(--navy); color: rgba(255,255,255,.82); border-top: 3px solid var(--sky); box-shadow: 0 30px 60px -20px rgba(6,17,41,.6); max-height: calc(100svh - 32px); overflow-y: auto; overscroll-behavior: contain; }
+.cookie-bar[hidden], .cookie-bar [hidden] { display: none; }
+.cookie-bar__title { margin: 0; color: #fff; font: 800 24px/1 var(--display); text-transform: uppercase; }
+.cookie-bar__text { margin: 10px 0 0; font-size: 14.5px; line-height: 1.5; }
+.cookie-bar__text a { color: #fff; }
+.cookie-bar__actions { display: flex; gap: 8px; margin-top: 16px; }
+.cookie-bar__btn { flex: 1; min-height: 46px; padding: 0 14px; border: 1.5px solid rgba(255,255,255,.35); background: transparent; color: #fff; cursor: pointer; font: 800 12.5px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.cookie-bar__btn:hover { border-color: #fff; }
+.cookie-bar__btn--yes { border-color: var(--blue); background: var(--blue); color: var(--navy-9); }
+.cookie-bar__btn--yes:hover { border-color: #fff; background: #fff; color: var(--navy); }
+.cookie-bar__more { margin-top: 14px; padding: 0; border: 0; background: none; color: rgba(255,255,255,.75); cursor: pointer; font: 700 13.5px/1.4 var(--sans); text-decoration: underline; text-underline-offset: 3px; }
+.cookie-bar__more:hover { color: #fff; }
+.cookie-bar__prefs { margin-top: 12px; }
+.cookie-opt { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.12); cursor: pointer; }
+.cookie-opt--fixed { cursor: default; }
+.cookie-opt__name { display: block; color: #fff; font-size: 14.5px; font-weight: 800; }
+.cookie-opt__desc { display: block; margin-top: 4px; font-size: 13.5px; line-height: 1.45; }
+.cookie-switch { appearance: none; position: relative; flex: none; width: 44px; height: 24px; margin: 0; border-radius: 12px; background: rgba(255,255,255,.22); cursor: pointer; transition: background .25s var(--ease); }
+.cookie-switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .25s var(--ease); }
+.cookie-switch:checked { background: var(--blue); }
+.cookie-switch:checked::after { transform: translateX(20px); }
+.cookie-switch:disabled { opacity: .5; cursor: default; }
+.cookie-switch:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.cookie-bar__prefs .cookie-bar__actions { margin-top: 4px; }
+@media (max-width: 760px) { .cookie-bar { left: 8px; right: 8px; bottom: 80px; max-width: none; max-height: calc(100svh - 96px); padding: 18px; } }
 
 /* ==========================================================================
    MODAL – přehrávač realizací

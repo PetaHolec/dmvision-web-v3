@@ -14,7 +14,8 @@
      Nic nepřidává. Pokud stránka později dostane schválený nástroj
      (GTM / dataLayer, Plausible…), události se začnou posílat samy. */
   const track = (name, props = {}) => {
-    if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: name, ...props });
+    if (typeof window.gtag === "function") window.gtag("event", name, props); // jen po souhlasu s měřením (cookies.js)
+    else if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: name, ...props });
     if (typeof window.plausible === "function") window.plausible(name, { props });
   };
   document.addEventListener("click", (e) => {
