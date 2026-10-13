@@ -20,13 +20,6 @@ window.DMV = {
   heroVideo: null,
   // heroVideo: { mp4: "assets/video/hero-loop.mp4", webm: "assets/video/hero-loop.webm" },
 
-  /* --- Showreel ---------------------------------------------------------
-     Buď vlastní soubor (mp4 + poster), nebo YouTube ID. Dokud chybí,
-     sekce ukáže označené místo pro doplnění. */
-  showreel: null,
-  // showreel: { youtube: "XXXXXXXXXXX", poster: "assets/img/showreel-poster.webp" },
-  // showreel: { mp4: "assets/video/showreel.mp4", poster: "assets/img/showreel-poster.webp" },
-
   /* --- Doporučení klienta --------------------------------------------------
      Zobrazí se pod realizacemi, jen když je vyplněné (a máte souhlas):
      { quote: "…", name: "Jméno Příjmení", role: "starosta obce Říčany", photo: "assets/img/…webp" } */
@@ -36,26 +29,49 @@ window.DMV = {
      price: text ceny, např. "25 000 Kč" (+ priceNote "měsíčně"); null = „Cena na míru“
      items: obsah balíčku – text, nebo { t: "název", d: "popis" }
      prefill: text, který se po kliknutí vloží do zprávy ve formuláři
-     (vybraný je vždy první balíček – Standard) */
+     (vybraný je vždy první balíček – Komfort) */
   packages: [
     {
-      id: "obec",
+      id: "komfort",
       featured: true,
-      label: "Hlavní nabídka · pro obce",
-      name: "Standard",
-      lead: "Pravidelný videozpravodaj a k němu krátká videa na sociální sítě. Jeden partner, jedna cena, každý měsíc.",
+      label: "Nejvýhodnější · pro obce a města",
+      name: "Komfort",
+      lead: "Videozpravodaj, čtyři krátká videa každý měsíc a animovaná grafika obce. Neomezené korektury a cestovné po celém Jihomoravském kraji v ceně.",
       items: [
         { t: "1× videozpravodaj měsíčně", d: "Přibližně 3–8 minut podle množství aktuálního dění." },
-        { t: "3× krátké video měsíčně", d: "Vertikální formát 9:16, zpravidla 30–60 sekund. Například pozvánka na akci, reportáž nebo informace o projektu." },
+        { t: "4× krátké video měsíčně", d: "Vertikální formát 9:16, zpravidla 30–60 sekund. Například pozvánka na akci, reportáž nebo informace o projektu." },
+        { t: "Dronové záběry" },
         { t: "Animovaná grafická identita", d: "Animované logo, vlastní jmenovky, titulky a přechody – animovaný design na míru podle vizuální identity obce, z dodaných podkladů." },
         { t: "Kompletní produkce a postprodukce", d: "Kamera, stabilizace, zvuk, střih, barvy a sjednocený vzhled všech výstupů." },
         { t: "Plánování a koordinace", d: "Pravidelná domluva témat, natáčecích termínů a předání hotových videí." },
+        { t: "Neomezený počet korektur a úprav", d: "V rámci balíčku zdarma." },
+        { t: "Cestovné v ceně", d: "Pro celý Jihomoravský kraj, jinak 9 Kč/km." },
       ],
-      price: "25 000 Kč",
+      price: "18 990 Kč",
       priceNote: "měsíčně",
       priceSub: "Konečná cena – nejsme plátci DPH.",
-      cta: "Chci balíček Standard",
-      prefill: "Dobrý den, máme zájem o balíček Standard (videozpravodaj + 3 krátká videa měsíčně). Prosíme o nabídku.",
+      cta: "Chci balíček Komfort",
+      prefill: "Dobrý den, máme zájem o balíček Komfort (videozpravodaj + 4 krátká videa měsíčně). Prosíme o nabídku.",
+    },
+    {
+      id: "start",
+      label: "Na začátek",
+      name: "Start",
+      lead: "Videozpravodaj a jedno krátké video měsíčně. Dobrý začátek pravidelné spolupráce.",
+      items: [
+        { t: "1× videozpravodaj měsíčně", d: "Přibližně 3–8 minut podle množství aktuálního dění." },
+        { t: "1× krátké video měsíčně", d: "Vertikální formát 9:16, zpravidla 30–60 sekund. Například pozvánka na akci, reportáž nebo informace o projektu." },
+        { t: "Dronové záběry" },
+        { t: "Kompletní produkce a postprodukce", d: "Kamera, stabilizace, zvuk, střih, barvy a sjednocený vzhled všech výstupů." },
+        { t: "Plánování a koordinace", d: "Pravidelná domluva témat, natáčecích termínů a předání hotových videí." },
+        { t: "První korektura nebo úprava zdarma" },
+        { t: "Cestovné v ceně", d: "Pro Brno-město a Brno-venkov, jinak 9 Kč/km." },
+      ],
+      price: "9 990 Kč",
+      priceNote: "měsíčně",
+      priceSub: "Konečná cena – nejsme plátci DPH.",
+      cta: "Chci balíček Start",
+      prefill: "Dobrý den, máme zájem o balíček Start (videozpravodaj + 1 krátké video měsíčně). Prosíme o nabídku.",
     },
     {
       id: "kampan",
@@ -75,7 +91,7 @@ window.DMV = {
     {
       id: "jednorazove",
       label: "Jednorázově",
-      name: "Samostatné video",
+      name: "Jedno video",
       lead: "Prezentační video obce, záznam akce nebo video o investici.",
       items: [
         "Prezentační video obce nebo projektu",
@@ -84,19 +100,32 @@ window.DMV = {
       ],
       price: null,
       cta: "Poptat video",
-      prefill: "Dobrý den, poptáváme jednorázové video: ",
+      prefill: "Dobrý den, poptáváme jedno video: ",
+    },
+    {
+      id: "dron",
+      label: "Jednorázově",
+      name: "Dronové záběry",
+      lead: "Letecké záběry vaší obce nebo města.",
+      items: [
+        "Video i fotky z dronu",
+        "Pro web, sociální sítě i prezentace",
+      ],
+      price: null,
+      cta: "Poptat dronové záběry",
+      prefill: "Dobrý den, poptáváme dronové záběry naší obce: ",
     },
   ],
 
   /* --- Portfolio --------------------------------------------------------
      group:   "obce" | "volby"  (volební videa jsou samostatná kategorie)
      status:  přesný popis vztahu – NEUVÁDĚT pokračování, které není potvrzené
-     image:   náhled 16:9 (min. 1600×900, webp/avif); null = placeholder
-     video:   { youtube: "ID" } | { mp4: "cesta.mp4" } | { instagram: "URL příspěvku" } | null
+     image:   náhled 16:9 (min. 1600×900, webp/avif), u videa na výšku tall: true; null = placeholder
+     video:   { youtube: "ID" } | { mp4: "cesta.mp4", tall: true = na výšku } | { instagram: "URL příspěvku" } | null
               (Instagram se otevírá v novém okně, nic se nenačítá z Meta předem)
      todo:    co je potřeba doplnit (zobrazí se v placeholderu)
-     videoOnly: true = místo textu jen samotné video (popisek „caption“ pod ním)
-     hideName:  true = jméno se nikde nezobrazí (ani v pásu „Natáčeli jsme pro“) – chybí souhlas */
+     noTrust:   true = jméno se nezobrazí v pásu „Natáčeli jsme pro“ – chybí souhlas
+     noCard:    true = jen v pásu „Natáčeli jsme pro“, bez karty v Realizacích (chybí video) */
   projects: [
     {
       id: "ricany",
@@ -109,19 +138,12 @@ window.DMV = {
         "Pravidelně natáčíme videozpravodaj obce formou krátkých videí a pomáháme se správou sociálních sítí, aby se občané o dění v obci dozvěděli rychle. Pro obec jsme připravili i animovanou grafickou sadu podle jejího manuálu.",
       tags: ["Videozpravodaj", "Grafická sada", "Dron", "Sociální sítě"],
       link: { href: "#motion-design", label: "Prohlédnout grafickou sadu Říčan" },
-      image: {
-        avif: "../assets/img/foto/obec-ricany-dronovy-zaber-1200.avif",
-        webp: "../assets/img/foto/obec-ricany-dronovy-zaber-1200.webp",
-        alt: "Letecký záběr obce Říčany u Brna z dronu – natočila D&M Vision",
-      },
-      video: null,
-      todo: "Doplnit odkaz na ukázkový díl videozpravodaje (YouTube ID nebo MP4).",
+      image: { webp: "assets/video/ricany-svc-rubiko-hasicka-poster.webp", alt: "Úvodní záběr z videa o SVČ Rubiko v Říčanech", tall: true },
+      video: { mp4: "assets/video/ricany-svc-rubiko-hasicka.mp4", tall: true },
       featured: true,
     },
     {
       id: "modrice",
-      videoOnly: true,
-      caption: "Modřice",
       group: "obce",
       client: "Modřice",
       kind: "Město",
@@ -129,14 +151,13 @@ window.DMV = {
       title: "Video produkce pro město Modřice",
       text: "Dlouhodobější video produkce pro město Modřice.",
       tags: ["Video produkce"],
-      image: null,
-      video: null,
-      todo: "Doplnit náhled 16:9, odkaz na video a jednu větu o obsahu. Až se potvrdí pokračování, změnit status na „Dlouhodobá spolupráce · pokračuje“.",
+      image: { webp: "assets/video/modrice-skola-poster.webp", alt: "Záběr z videa o škole v Modřicích", tall: true },
+      video: { mp4: "assets/video/modrice-skola.mp4", tall: true },
+      featured: true,
     },
     {
       id: "oresin",
-      videoOnly: true,
-      caption: "Brno-Ořešín",
+      noCard: true,
       group: "obce",
       client: "Brno-Ořešín",
       kind: "Městská část Brna",
@@ -146,13 +167,10 @@ window.DMV = {
       tags: ["Video produkce"],
       image: null,
       video: null,
-      todo: "Doplnit náhled 16:9, odkaz na video a stručný popis rozsahu zakázky.",
     },
     {
       id: "chvatal",
-      videoOnly: true,
-      caption: "Volební video",
-      hideName: true,
+      noTrust: true,
       group: "volby",
       client: "Filip Chvátal",
       kind: "Kandidát",
@@ -161,15 +179,13 @@ window.DMV = {
       title: "Volební video",
       text: "Natočili jsme volební video pro Filipa Chvátala, který letos volby vyhrál.",
       tags: ["Volební kampaň"],
-      image: null,
-      video: { instagram: "https://www.instagram.com/p/Dd1l_lDMp7U/" },
-      todo: "Doplnit náhledový snímek z videa (16:9). Ověřit souhlas se zveřejněním.",
+      image: { webp: "assets/video/volebni-video-filip-chvatal-poster.webp", alt: "Záběr z volebního videa Filipa Chvátala", tall: true },
+      video: { mp4: "assets/video/volebni-video-filip-chvatal.mp4", tall: true },
+      featured: true,
     },
     {
       id: "kol",
-      videoOnly: true,
-      caption: "Volební videa",
-      hideName: true,
+      noTrust: true,
       group: "volby",
       client: "Kuřimská občanská liga · Drago Sukalovský",
       kind: "Politický subjekt a kandidát",
@@ -177,9 +193,9 @@ window.DMV = {
       title: "Volební videa",
       text: "Volební videa pro Kuřimskou občanskou ligu a Draga Sukalovského.",
       tags: ["Volební kampaň"],
-      image: null,
-      video: null,
-      todo: "Doplnit náhled 16:9 a odkaz na video. Ověřit souhlas se zveřejněním.",
+      image: { webp: "assets/video/kurim-kol-dron-poster.webp", alt: "Úvod volebního videa Kuřimské občanské ligy" },
+      video: { mp4: "assets/video/kurim-kol-dron.mp4" },
+      featured: true,
     },
   ],
 };

@@ -154,19 +154,13 @@
       </div>
 
       <div class="hero__body wrap">
-        <div class="aud" role="group" aria-label="Pro koho hledáte video">
-          <span class="aud__lbl">Jsem z</span>
-          <button type="button" class="aud__btn" data-aud-set="obce" aria-pressed="true">obce</button>
-          <button type="button" class="aud__btn" data-aud-set="politika" aria-pressed="false">politické strany</button>
-        </div>
         <p class="eyebrow eyebrow--light">Video produkce · Brno a Jihomoravský kraj</p>
         <h1 class="hero__title" id="hero-title">
           <span class="line"><span>Profesionální video</span></span>
           <span class="line"><span>pro města, obce</span></span>
           <span class="line line--accent"><span>a politické strany</span></span>
         </h1>
-        <p class="hero__lead" data-aud-hide="politika">Videozpravodaje a reportáže pro samosprávy, volební videa pro strany a kandidáty. Natočíme, sestříháme a graficky zpracujeme – animovanou grafiku stavíme z&nbsp;vaší <strong>stávající vizuální identity</strong>, takže každé video nese vaše logo, barvy a písmo.</p>
-        <p class="hero__lead" data-aud-show="politika" hidden>Volební spoty, představení kandidátů a krátká videa pro sítě po celou kampaň. Natočíme, sestříháme a graficky zpracujeme v&nbsp;<strong>barvách a vizuálu vaší strany</strong> – rychle a v&nbsp;termínech, které kampaň potřebuje.</p>
+        <p class="hero__lead">Videozpravodaje a reportáže pro samosprávy, volební videa pro strany a kandidáty. Natočíme, sestříháme a graficky zpracujeme – animovanou grafiku stavíme z&nbsp;vaší <strong>stávající vizuální identity</strong>, takže každé video nese vaše logo, barvy a písmo.</p>
         <div class="actions">
           <a class="btn btn--accent btn--lg" href="#kontakt" data-track="cta_hero">Probrat spolupráci <span class="btn__arr" aria-hidden="true">→</span></a>
           <a class="btn btn--ghost btn--lg" href="#realizace" data-track="cta_hero_portfolio">Prohlédnout realizace</a>
@@ -190,7 +184,7 @@
     </section>
 
     <!-- ===================== PROČ VIDEO MÍSTO TEXTU ===================== -->
-    <section class="read section" data-aud-hide="politika" id="proc-video" data-scene="Proč video" aria-labelledby="read-title">
+    <section class="read section" id="proc-video" data-scene="Proč video" aria-labelledby="read-title">
       <div class="wrap">
         <div class="read__head">
           <div>
@@ -235,25 +229,30 @@
     </section>
 
     <!-- ===================== SHOWREEL ===================== -->
-    <section class="reel" id="showreel" data-scene="Showreel" aria-labelledby="reel-title">
+    <section class="reel" id="produkce" data-scene="Produkce" aria-labelledby="reel-title">
+      <!-- letecké záběry za textem (prolínají se) -->
+      <div class="reel__bg" aria-hidden="true">
+        <picture>
+          <source type="image/avif" srcset="../assets/img/foto/dronovy-zaber-mesto-namesti-800.avif 800w, ../assets/img/foto/dronovy-zaber-mesto-namesti-1200.avif 1200w, ../assets/img/foto/dronovy-zaber-mesto-namesti-1600.avif 1600w, ../assets/img/foto/dronovy-zaber-mesto-namesti-2000.avif 2000w" sizes="100vw">
+          <img src="../assets/img/foto/dronovy-zaber-mesto-namesti-1200.webp" srcset="../assets/img/foto/dronovy-zaber-mesto-namesti-800.webp 800w, ../assets/img/foto/dronovy-zaber-mesto-namesti-1200.webp 1200w, ../assets/img/foto/dronovy-zaber-mesto-namesti-1600.webp 1600w, ../assets/img/foto/dronovy-zaber-mesto-namesti-2000.webp 2000w" sizes="100vw" width="2000" height="1099" alt="" loading="lazy" decoding="async">
+        </picture>
+        <picture>
+          <source type="image/avif" srcset="../assets/img/foto/dronovy-zaber-stadion-800.avif 800w, ../assets/img/foto/dronovy-zaber-stadion-1200.avif 1200w, ../assets/img/foto/dronovy-zaber-stadion-1600.avif 1600w, ../assets/img/foto/dronovy-zaber-stadion-2000.avif 2000w" sizes="100vw">
+          <img src="../assets/img/foto/dronovy-zaber-stadion-1200.webp" srcset="../assets/img/foto/dronovy-zaber-stadion-800.webp 800w, ../assets/img/foto/dronovy-zaber-stadion-1200.webp 1200w, ../assets/img/foto/dronovy-zaber-stadion-1600.webp 1600w, ../assets/img/foto/dronovy-zaber-stadion-2000.webp 2000w" sizes="100vw" width="2000" height="1114" alt="" loading="lazy" decoding="async">
+        </picture>
+        <picture>
+          <source type="image/avif" srcset="../assets/img/foto/dronovy-zaber-skola-hriste-800.avif 800w, ../assets/img/foto/dronovy-zaber-skola-hriste-1200.avif 1200w, ../assets/img/foto/dronovy-zaber-skola-hriste-1600.avif 1600w, ../assets/img/foto/dronovy-zaber-skola-hriste-2000.avif 2000w" sizes="100vw">
+          <img src="../assets/img/foto/dronovy-zaber-skola-hriste-1200.webp" srcset="../assets/img/foto/dronovy-zaber-skola-hriste-800.webp 800w, ../assets/img/foto/dronovy-zaber-skola-hriste-1200.webp 1200w, ../assets/img/foto/dronovy-zaber-skola-hriste-1600.webp 1600w, ../assets/img/foto/dronovy-zaber-skola-hriste-2000.webp 2000w" sizes="100vw" width="2000" height="1130" alt="" loading="lazy" decoding="async">
+        </picture>
+        <picture>
+          <source type="image/avif" srcset="../assets/img/foto/dronovy-zaber-obec-ulice-800.avif 800w, ../assets/img/foto/dronovy-zaber-obec-ulice-1200.avif 1200w, ../assets/img/foto/dronovy-zaber-obec-ulice-1600.avif 1600w, ../assets/img/foto/dronovy-zaber-obec-ulice-2000.avif 2000w" sizes="100vw">
+          <img src="../assets/img/foto/dronovy-zaber-obec-ulice-1200.webp" srcset="../assets/img/foto/dronovy-zaber-obec-ulice-800.webp 800w, ../assets/img/foto/dronovy-zaber-obec-ulice-1200.webp 1200w, ../assets/img/foto/dronovy-zaber-obec-ulice-1600.webp 1600w, ../assets/img/foto/dronovy-zaber-obec-ulice-2000.webp 2000w" sizes="100vw" width="2000" height="1125" alt="" loading="lazy" decoding="async">
+        </picture>
+      </div>
       <div class="wrap reel__in">
         <div class="reel__head">
-          <p class="eyebrow eyebrow--light">Showreel</p>
+          <p class="eyebrow eyebrow--light">Produkce</p>
           <h2 class="h2 h2--light" id="reel-title">Obraz, zvuk, střih a&nbsp;grafika <span class="accent">v&nbsp;jednom</span></h2>
-          <p class="reel__note">Výběr záběrů z naší produkce: dron, stabilizované záběry z gimbalu, rozhovory a animovaná grafika.</p>
-        </div>
-        <div class="player" data-player>
-          <!-- Obsah doplní main.js podle DMV.showreel. Bez dat zůstane záběr s označeným místem: -->
-          <div class="player__still">
-            <picture>
-              <source type="image/avif" srcset="../assets/img/foto/hody-opatovice-krojovana-chasa-800.avif 800w, ../assets/img/foto/hody-opatovice-krojovana-chasa-999.avif 999w" sizes="(max-width: 1100px) 100vw, 1100px">
-              <img src="../assets/img/foto/hody-opatovice-krojovana-chasa-999.webp" width="999" height="666" alt="" loading="lazy" decoding="async">
-            </picture>
-            <span class="vf vf--tl"></span><span class="vf vf--tr"></span><span class="vf vf--bl"></span><span class="vf vf--br"></span>
-            <span class="player__rec"><span class="rec-dot"></span>REC</span>
-            <span class="player__fmt">16:9 · 4K · 25p</span>
-            <p class="player__chip">Místo pro showreel</p>
-          </div>
         </div>
       </div>
     </section>
@@ -353,7 +352,7 @@
           </div>
         </div>
 
-        <!-- Grafika z praxe: dva klienti, u každého 3 ukázky (převedeno z After Effects) -->
+        <!-- Grafika z praxe: dva klienti – hotová videa a šablony převedené z After Effects -->
         <div class="sc" data-sc>
           <div class="sc__cases" role="tablist" aria-label="Ukázky grafiky z praxe">
             <button role="tab" class="sc__case" data-case="kol" aria-selected="true" aria-controls="sc-panel">
@@ -362,7 +361,7 @@
               <span class="sc__sw sc__sw--kol"><i></i><i></i><i></i></span>
             </button>
             <button role="tab" class="sc__case" data-case="ric" aria-selected="false" tabindex="-1" aria-controls="sc-panel">
-              <span class="sc__case-k"><span class="rec-dot"></span>Z praxe · videozpravodaj · Reels 9:16</span>
+              <span class="sc__case-k"><span class="rec-dot"></span>Z praxe · videozpravodaj · 16:9 i 9:16</span>
               <span class="sc__case-n">Říčany u Brna</span>
               <span class="sc__sw sc__sw--ric"><i></i><i></i><i></i></span>
             </button>
@@ -386,30 +385,29 @@
             </div>
 
             <div class="sc__stage">
-              <!-- 16:9 – KOL -->
-              <div class="sc__viewer" data-case-show="kol">
+              <!-- 16:9 -->
+              <div class="sc__viewer" data-fmt="wide">
                 <div class="sc__vbar" aria-hidden="true"><span>1920×1080 · 25p</span><span class="sc__tc"><span class="rec-dot"></span><span data-sc-tc>00:00:00:00</span></span></div>
-                <div class="sc__screen sc__screen--wide" data-screen="kol" aria-label="Náhled animace 16:9">
-                  <video class="sc__video" data-kol-video muted playsinline loop preload="none" poster="assets/video/kol-intro-mapa-poster.jpg" aria-label="Intro s mapou Kuřimi pro Kuřimskou občanskou ligu">
-                    <source src="assets/video/kol-intro-mapa.mp4" type="video/mp4">
-                  </video>
-                  <div class="sc__canvas" data-canvas="kol" aria-hidden="true"></div>
-                  <span class="rk__progress" aria-hidden="true"><i data-progress="kol"></i></span>
+                <div class="sc__screen sc__screen--wide" data-screen="wide" aria-label="Náhled animace 16:9">
+                  <video class="sc__video" data-sc-video muted playsinline loop preload="none" hidden></video>
+                  <div class="sc__canvas" data-canvas="wide" aria-hidden="true"></div>
+                  <span class="rk__progress" aria-hidden="true"><i data-progress="wide"></i></span>
                 </div>
               </div>
-              <!-- 9:16 – Říčany -->
-              <div class="rk__phone" data-case-show="ric" hidden>
-                <div class="rk__screen" data-screen="ric" aria-label="Náhled animace Reels 9:16">
+              <!-- 9:16 -->
+              <div class="rk__phone" data-fmt="tall" hidden>
+                <div class="rk__screen" data-screen="tall" aria-label="Náhled animace Reels 9:16">
                   <div class="rk__bg" aria-hidden="true"><img src="../assets/img/foto/obec-ricany-dronovy-zaber-1200.webp" alt="" loading="lazy" decoding="async" width="1200" height="681"></div>
-                  <div class="rk__canvas" data-canvas="ric" aria-hidden="true"></div>
-                  <span class="rk__progress" aria-hidden="true"><i data-progress="ric"></i></span>
+                  <video class="sc__video" data-sc-video muted playsinline loop preload="none" hidden></video>
+                  <div class="rk__canvas" data-canvas="tall" aria-hidden="true"></div>
+                  <span class="rk__progress" aria-hidden="true"><i data-progress="tall"></i></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <p class="demo__disclaimer">Grafika vychází z&nbsp;vizuální identity Kuřimské občanské ligy a obce Říčany u&nbsp;Brna. Jména, data a čísla v&nbsp;šablonách jsou ukázková – ve videu je nahradíme skutečným obsahem.</p>
+        <p class="demo__disclaimer">Grafika vychází z&nbsp;vizuální identity Kuřimské občanské ligy a obce Říčany u&nbsp;Brna. Jméno ve jmenovce Kuřimské občanské ligy je ukázkové – ve videu ho nahradíme skutečným.</p>
 
         <ol class="motion__steps">
           <li class="reveal"><span>1</span><p><strong>Převezmeme podklady</strong> – logo, barvy, písmo, grafický manuál.</p></li>
@@ -440,7 +438,7 @@
           </div>
           <div class="work__block work__block--volby">
             <h3 class="work__group">Politické strany a kandidáti <span>Volební videa pro strany, hnutí a kandidáty</span></h3>
-            <div class="work__grid work__grid--compact" data-work="volby"></div>
+            <div class="work__grid" data-work="volby"></div>
           </div>
         </div>
 
@@ -461,12 +459,12 @@
         </div>
         <dl class="why__list">
           <div class="reveal"><dt>Kompletní produkce</dt><dd>Plán, natáčení, střih, barvy, zvuk i grafika. Nemusíte koordinovat několik dodavatelů.</dd></div>
-          <div class="reveal"><dt>Profesionální technika</dt><dd>Ostrý, klidný obraz a&nbsp;srozumitelný zvuk.
+          <div class="reveal"><dt>Máme profesionální techniku a&nbsp;značky</dt><dd>Ostrý, klidný obraz a&nbsp;srozumitelný zvuk.
             <ul class="kit">
-              <li><span>Kamera</span>Sony A7&nbsp;IV · 24–70&nbsp;mm f/2.8 GM&nbsp;II</li>
-              <li><span>Stabilizátor</span>DJI RS&nbsp;4</li>
-              <li><span>Dron</span>DJI Mavic&nbsp;3</li>
-              <li><span>Zvuk</span>bezdrátové mikrofony Rode</li>
+              <li><span>Kamera</span>Sony</li>
+              <li><span>Stabilizátor</span>DJI</li>
+              <li><span>Dron</span>DJI</li>
+              <li><span>Zvuk</span>Røde</li>
             </ul></dd></div>
           <div class="reveal"><dt>Grafika podle vaší identity</dt><dd>Motion design vychází z&nbsp;vašeho loga, barev a písma – ne z&nbsp;obecné šablony.</dd></div>
           <div class="reveal"><dt>Jednotný vzhled všech dílů</dt><dd>Jedna grafická sada pro všechna videa. Lidé vaše video poznají na první pohled.</dd></div>
@@ -540,7 +538,7 @@
         <div class="faq__list">
           <details>
             <summary>Musíme kvůli balíčku vypisovat veřejnou zakázku?</summary>
-            <p>Roční objem balíčku Standard (300&nbsp;000&nbsp;Kč, nejsme plátci DPH) je výrazně pod limitem veřejné zakázky malého rozsahu na služby. Postup zadání ale vždy určuje vnitřní směrnice vaší obce. Rádi dodáme podklady, které k&nbsp;tomu potřebujete – nabídku a popis plnění.</p>
+            <p>Roční objem balíčku Komfort (227&nbsp;880&nbsp;Kč, nejsme plátci DPH) je výrazně pod limitem veřejné zakázky malého rozsahu na služby. Postup zadání ale vždy určuje vnitřní směrnice vaší obce. Rádi dodáme podklady, které k&nbsp;tomu potřebujete – nabídku a popis plnění.</p>
           </details>
           <details>
             <summary>Komu patří práva k hotovým videím?</summary>
@@ -548,7 +546,7 @@
           </details>
           <details>
             <summary>Jak dlouho trvá, než je video hotové?</summary>
-            <p>U pravidelného videozpravodaje si termíny natáčení a zveřejnění plánujeme dopředu, takže díl vychází v&nbsp;domluvený den. U jednorázových videí termín domluvíme podle rozsahu a&nbsp;vašich potřeb.</p>
+            <p>U pravidelného videozpravodaje plánujeme termíny natáčení a&nbsp;zveřejnění dopředu, takže díl vychází v&nbsp;domluvený den. U&nbsp;jednorázových videí termín domluvíme podle rozsahu. První verzi ale máte vždy nejpozději do 7&nbsp;dní od natáčení. Potřebujete video dřív? Domluvíme se.</p>
           </details>
           <details>
             <summary>Můžeme video před zveřejněním schválit?</summary>
@@ -556,11 +554,15 @@
           </details>
           <details>
             <summary>Co od nás na začátku potřebujete?</summary>
-            <p>Kontaktní osobu, témata, která chcete ukazovat, a&nbsp;grafické podklady obce – logo, barvy, písmo nebo grafický manuál, pokud ho máte. Zbytek připravíme my.</p>
+            <p>Kontaktní osobu, témata, která chcete ukazovat, a&nbsp;grafické podklady obce: logo, barvy, písmo nebo grafický manuál, pokud ho máte. A&nbsp;to je vše. Zbytek už je na nás.</p>
           </details>
           <details>
             <summary>Jak je to s natáčením občanů a GDPR?</summary>
             <p>Na veřejných akcích natáčíme ohleduplně a&nbsp;u rozhovorů máme souhlas lidí, kteří ve videu mluví. Pokud si někdo nepřeje být ve videu, vyhovíme mu.</p>
+          </details>
+          <details>
+            <summary>Co když chceme jen jedno video, ne celý balíček?</summary>
+            <p>Rozhodně to jde. Natočíme i&nbsp;jedno samostatné video&nbsp;– třeba pozvánku na akci, video o&nbsp;investici nebo prezentaci obce. Je to dobrý způsob, jak si spolupráci s&nbsp;námi vyzkoušet.</p>
           </details>
           <details>
             <summary>Lze balíček ukončit nebo upravit?</summary>
@@ -633,9 +635,11 @@
           <fieldset class="fstep choices" data-step="1">
             <legend class="fstep__h"><b>Jaký balíček vás zajímá?<span class="req" aria-hidden="true">*</span></b> <span>Vyberte jednu možnost.</span></legend>
             <div class="choices__grid">
-              <label class="choice"><input type="radio" name="balicek" value="Standard (videozpravodaj)" data-pk="obec"><span class="choice__box" aria-hidden="true"></span><span>Standard <small>videozpravodaj a&nbsp;krátká videa</small></span></label>
+              <label class="choice"><input type="radio" name="balicek" value="Komfort (videozpravodaj + 4 krátká videa)" data-pk="komfort"><span class="choice__box" aria-hidden="true"></span><span>Komfort <small>videozpravodaj a&nbsp;4 krátká videa</small></span></label>
+              <label class="choice"><input type="radio" name="balicek" value="Start (videozpravodaj + 1 krátké video)" data-pk="start"><span class="choice__box" aria-hidden="true"></span><span>Start <small>videozpravodaj a&nbsp;1 krátké video</small></span></label>
               <label class="choice"><input type="radio" name="balicek" value="Volební kampaň" data-pk="kampan"><span class="choice__box" aria-hidden="true"></span><span>Volební kampaň</span></label>
-              <label class="choice"><input type="radio" name="balicek" value="Samostatné video" data-pk="jednorazove"><span class="choice__box" aria-hidden="true"></span><span>Samostatné video</span></label>
+              <label class="choice"><input type="radio" name="balicek" value="Jedno video" data-pk="jednorazove"><span class="choice__box" aria-hidden="true"></span><span>Jedno video</span></label>
+              <label class="choice"><input type="radio" name="balicek" value="Dronové záběry" data-pk="dron"><span class="choice__box" aria-hidden="true"></span><span>Dronové záběry</span></label>
               <label class="choice"><input type="radio" name="balicek" value="Ještě nevím" data-pk="nevim"><span class="choice__box" aria-hidden="true"></span><span>Ještě nevím</span></label>
             </div>
             <p class="field__err" id="f-pk-err"></p>

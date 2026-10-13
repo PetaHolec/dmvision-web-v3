@@ -102,32 +102,17 @@
       return `<iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0${autoplay ? "&autoplay=1" : ""}" title="${esc(title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
     }
     if (video.mp4) {
-      return `<video src="${esc(video.mp4)}" controls playsinline ${autoplay ? "autoplay" : ""} ${video.poster ? `poster="${esc(video.poster)}"` : ""}></video>`;
+      return `<video src="${esc(res(video.mp4))}" controls playsinline ${autoplay ? "autoplay" : ""} ${video.poster ? `poster="${esc(res(video.poster))}"` : ""}></video>`;
     }
     return "";
   };
-
-  // showreel
-  const player = $("[data-player]");
-  const reel = DMV.showreel;
-  if (player && reel && (reel.youtube || reel.mp4)) {
-    player.innerHTML = `
-      <button class="player__poster" type="button" aria-label="Přehrát showreel D&amp;M Vision se zvukem">
-        ${reel.poster ? `<img src="${esc(reel.poster)}" alt="" loading="lazy" decoding="async">` : ""}
-        <span class="play">Přehrát showreel</span>
-      </button>`;
-    $(".player__poster", player).addEventListener("click", () => {
-      player.innerHTML = embed(reel, "Showreel D&M Vision");
-      track("showreel_play");
-      const el = $("iframe, video", player); if (el) el.focus();
-    });
-  }
 
   // modal pro realizace
   const modal = $("[data-modal]") || document.createElement("dialog");
   if (!modal.isConnected) { modal.innerHTML = "<p data-modal-title></p><div data-modal-media></div><button data-modal-close></button>"; document.body.append(modal); }
   const openVideo = (p, opener) => {
-    $("[data-modal-title]", modal).textContent = p.hideName ? p.caption || p.title : `${p.client} – ${p.title}`;
+    $("[data-modal-title]", modal).textContent = `${p.client} – ${p.title}`;
+    modal.classList.toggle("modal--tall", !!p.video.tall); // video na výšku: užší okno
     $("[data-modal-media]", modal).innerHTML = embed(p.video, p.title);
     modal.showModal();
     modal._opener = opener;
@@ -142,47 +127,19 @@
   });
 
   /* ---------- portfolio ---------- */
-  // jen samotné video: náhled (nebo prázdný „monitor“ do doby, než video dodají) a krátký popisek
-  const renderVideoTile = (p) => {
-    const v = p.video || {};
-    const hasVideo = v.youtube || v.mp4;
-    const name = p.hideName ? p.caption : p.client;
-    const screen = v.mp4
-      ? `<video class="vtile__prev" src="${esc(res(v.mp4))}#t=0.1" muted playsinline loop preload="metadata" aria-hidden="true"></video>`
-      : p.image
-        ? `<img src="${esc(res(p.image.webp || p.image.src))}" alt="" loading="lazy" decoding="async">`
-        : `<span class="vf vf--tl"></span><span class="vf vf--tr"></span><span class="vf vf--bl"></span><span class="vf vf--br"></span>
-           <span class="vtile__rec"><span class="rec-dot"></span>REC</span><span class="vtile__tc">00:00:00:00</span>
-           ${hasVideo || v.instagram ? "" : `<span class="vtile__wait">Video doplníme</span>`}`;
-    const play = hasVideo
-      ? `<button class="vtile__play" type="button" data-play="${esc(p.id)}" aria-label="Přehrát video: ${esc(name)}"><span class="play">Přehrát</span></button>`
-      : v.instagram
-        ? `<a class="vtile__ig" href="${esc(v.instagram)}" target="_blank" rel="noopener" data-track="portfolio_instagram" aria-label="Přehrát video na Instagramu (otevře se v novém okně)"><span class="play">Instagram ↗</span></a>`
-        : "";
-    return `
-      <figure class="vtile reveal">
-        <div class="vtile__screen">${screen}${play}</div>
-        <figcaption class="vtile__cap">${esc(p.caption || name)}</figcaption>
-      </figure>`;
-  };
-  const renderProject = (p, compact) => {
-    if (p.videoOnly) return renderVideoTile(p);
+  const renderProject = (p) => {
     const ig = p.video && p.video.instagram;
     const hasVideo = p.video && (p.video.youtube || p.video.mp4);
+    const tall = !!(p.image && p.image.tall); // náhled na výšku: celý snímek, za ním rozmazaná kopie
     const media = p.image
-      ? `<picture>
+      ? `${tall && !p.featured ? `<img class="proj__blur" src="${esc(res(p.image.webp || p.image.src))}" alt="" loading="lazy" decoding="async">` : ""}<picture>
            ${p.image.avif ? `<source type="image/avif" srcset="${esc(res(p.image.avif))}">` : ""}
-           <img src="${esc(res(p.image.webp || p.image.src))}" alt="${esc(p.image.alt || p.client)}" loading="lazy" decoding="async" width="1600" height="900">
+           <img src="${esc(res(p.image.webp || p.image.src))}" alt="${esc(p.image.alt || p.client)}" loading="lazy" decoding="async" width="${tall ? 720 : 1600}" height="${tall ? 1280 : 900}">
          </picture>`
-      : `<div class="slate" aria-hidden="true">
-           <span class="slate__clap"></span>
-           <dl class="slate__grid">
-             <div class="slate__wide"><dt>Produkce</dt><dd>D&amp;M Vision</dd></div>
-             <div class="slate__wide"><dt>Scéna</dt><dd>${esc(p.client)}</dd></div>
-             <div><dt>Typ</dt><dd>${esc(p.kind)}</dd></div>
-             <div><dt>Záběr</dt><dd>${esc((p.tags || [])[0] || p.title)}</dd></div>
-           </dl>
-           <p class="slate__note">Náhled z videa doplníme</p>
+      : `<div class="placeholder">
+           <span class="vf vf--tl"></span><span class="vf vf--tr"></span><span class="vf vf--bl"></span><span class="vf vf--br"></span>
+           <p class="placeholder__label">Místo pro náhled videa</p>
+           <p class="placeholder__spec">Snímek z videa 16:9 · min. 1600×900 px</p>
          </div>`;
     const play = hasVideo
       ? `<button class="proj__playbtn" type="button" data-play="${esc(p.id)}" aria-label="Přehrát video: ${esc(p.client)}"><span class="play">Přehrát</span></button>`
@@ -191,7 +148,7 @@
         : "";
     const live = /pokračuje/i.test(p.status);
     return `
-      <article class="proj reveal ${p.featured ? "proj--featured" : ""} ${compact ? "proj--compact" : ""}">
+      <article class="proj reveal ${p.featured ? "proj--featured" : ""} ${tall ? "proj--tall" : ""}">
         <div class="proj__media">${media}${play}</div>
         <div class="proj__body">
           <div class="proj__meta">
@@ -210,7 +167,7 @@
   const trust = $("[data-trust]");
   if (trust) {
     // „Strana · Kandidát“ s typem „Politický subjekt a kandidát“ rozdělíme na dvě jména
-    const names = (DMV.projects || []).filter((p) => !p.hideName).flatMap((p) => {
+    const names = (DMV.projects || []).filter((p) => !p.noTrust).flatMap((p) => {
       const who = p.client.split(" · "), kinds = p.kind.split(" a ");
       return who.length > 1 && kinds.length === who.length
         ? who.map((c, i) => ({ client: c, kind: kinds[i].charAt(0).toUpperCase() + kinds[i].slice(1), group: p.group }))
@@ -223,12 +180,7 @@
   }
   $$("[data-work]").forEach((grid) => {
     const group = grid.dataset.work;
-    grid.innerHTML = (DMV.projects || []).filter((p) => p.group === group).map((p) => renderProject(p, group === "volby")).join("");
-  });
-  $$(".vtile__prev").forEach((v) => {
-    const tile = v.closest(".vtile");
-    tile.addEventListener("pointerenter", () => { if (!reduceMotion.matches) v.play().catch(() => {}); });
-    tile.addEventListener("pointerleave", () => v.pause());
+    grid.innerHTML = (DMV.projects || []).filter((p) => p.group === group && !p.noCard).map(renderProject).join("");
   });
   document.addEventListener("click", (e) => {
     const b = e.target.closest("[data-play]");
@@ -349,7 +301,7 @@
     }), { rootMargin: "0px 0px -12% 0px" });
     $$(".eyebrow, .trust__lbl").forEach((el) => { if (el.children.length === 0) decodeObs.observe(el); });
   }
-  $$(".svc__fig, .grade__frame, .player, .proj__media").forEach((el) => el.classList.add("wipe"));
+  $$(".svc__fig, .grade__frame, .proj__media").forEach((el) => el.classList.add("wipe"));
 
   /* ---------- odhalování při scrollu ---------- */
   const revealObs = new IntersectionObserver((entries) => {
@@ -397,7 +349,6 @@
   });
 
   const hero = $(".hero");
-  const reelPlayer = $("[data-player]");
   const hud = $("[data-hud]");
   const hudSc = $("[data-hud-sc]"), hudName = $("[data-hud-name]"), hudTc = $("[data-hud-tc]"), hudBar = $("[data-hud-bar]");
   const scenes = $$("[data-scene]");
@@ -406,13 +357,7 @@
   const fx = () => {
     fxQueued = false;
     const vh = window.innerHeight, y = window.scrollY;
-    if (!reduceMotion.matches) {
-      if (hero) hero.style.setProperty("--p", clamp(y / (vh * 0.9)).toFixed(3));
-      if (reelPlayer) {
-        const r = reelPlayer.getBoundingClientRect();
-        reelPlayer.style.setProperty("--s", (0.86 + 0.14 * clamp((vh - r.top) / (vh * 0.75))).toFixed(3));
-      }
-    }
+    if (!reduceMotion.matches && hero) hero.style.setProperty("--p", clamp(y / (vh * 0.9)).toFixed(3));
     wordBlocks.forEach((el) => {
       const r = el.getBoundingClientRect();
       const p = reduceMotion.matches ? 1 : clamp((vh * 0.85 - r.top) / (r.height + vh * 0.35));
@@ -612,24 +557,6 @@
       }
     });
   }
-
-  /* ---------- přepínač publika: obce / politika ---------- */
-  const audBtns = $$("[data-aud-set]");
-  const setAud = (aud, save) => {
-    document.documentElement.dataset.aud = aud;
-    audBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.audSet === aud)));
-    $$("[data-aud-show]").forEach((el) => { el.hidden = el.dataset.audShow !== aud; });
-    $$("[data-aud-hide]").forEach((el) => { el.hidden = el.dataset.audHide === aud; });
-    if (trust) {
-      const items = $$(".trust__item", trust);
-      trust.append(...items.filter((li) => (li.dataset.group === "volby") === (aud === "politika")), ...items.filter((li) => (li.dataset.group === "volby") !== (aud === "politika")));
-    }
-    if (save) { try { localStorage.setItem("dmv-aud", aud); } catch (e) {} track("audience_switch", { aud }); }
-  };
-  audBtns.forEach((b) => b.addEventListener("click", () => setAud(b.dataset.audSet, true)));
-  let aud = new URLSearchParams(location.search).get("pro");
-  if (aud !== "politika" && aud !== "obce") { try { aud = localStorage.getItem("dmv-aud"); } catch (e) { aud = null; } }
-  setAud(aud === "politika" ? "politika" : "obce", false);
 
   /* ---------- porovnání barev: jezdec se sám lehce houpe, dokud na něj nikdo nesáhne ---------- */
   $$("[data-grade-range]").forEach((r) => {

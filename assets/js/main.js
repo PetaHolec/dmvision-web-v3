@@ -126,63 +126,6 @@
     });
   }
 
-  /* ---------- odkaz na stránku pro obce: nejdřív výběr obec / politická strana ---------- */
-  // stránka pro obce se pak otevře rovnou v té verzi (?pro=…); přepínač na ní zůstává
-  const obceLinks = $$("[data-obce]");
-  if (obceLinks.length && typeof HTMLDialogElement === "function") {
-    const svg = (paths) =>
-      `<svg class="ico" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">${paths}</svg>`;
-    const arrow = svg('<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>');
-    let pick = null;
-    let opener = null;
-    const build = () => {
-      pick = document.createElement("dialog");
-      pick.className = "pick";
-      pick.setAttribute("aria-labelledby", "pick-title");
-      pick.innerHTML = `
-        <div class="pick__in">
-          <button class="pick__close" type="button" aria-label="Zavřít">${svg('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>')}</button>
-          <p class="pick__eyebrow">D&amp;M Vision pro obce a&nbsp;politické strany</p>
-          <h2 class="pick__title" id="pick-title">Pro koho hledáte video?</h2>
-          <div class="pick__opts">
-            <a class="pick__opt" data-pro="obce">
-              <span class="pick__name">Obec</span>
-              <span class="pick__desc">Videozpravodaje, reportáže a&nbsp;prezentační videa</span>
-              ${arrow}
-            </a>
-            <a class="pick__opt" data-pro="politika">
-              <span class="pick__name">Politická strana</span>
-              <span class="pick__desc">Volební spoty a&nbsp;videa pro kampaň</span>
-              ${arrow}
-            </a>
-          </div>
-          <p class="pick__note">Volbu můžete na stránce kdykoli změnit.</p>
-        </div>`;
-      document.body.append(pick);
-      $(".pick__close", pick).addEventListener("click", () => pick.close());
-      pick.addEventListener("click", (e) => {
-        if (e.target === pick) pick.close();
-      });
-      pick.addEventListener("close", () => {
-        // odkaz z menu už je schovaný – fokus pak na tlačítko Menu
-        (opener && opener.offsetParent ? opener : toggle)?.focus();
-      });
-    };
-    obceLinks.forEach((a) => a.addEventListener("click", (e) => {
-      // do nové karty (ctrl / cmd / prostřední tlačítko) rovnou stránka
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
-      e.preventDefault();
-      if (!pick) build();
-      const base = a.href.split(/[?#]/)[0];
-      $$(".pick__opt", pick).forEach((o) => {
-        o.href = `${base}?pro=${o.dataset.pro}`;
-      });
-      opener = a;
-      pick.showModal();
-      $(".pick__opt", pick).focus();
-    }));
-  }
-
   /* ---------- mobil: obsah na rozbalení ---------- */
   // <details data-desktop-open>: na počítači otevřené (jako běžný obsah), na mobilu sbalené pod tlačítkem
   $$("details[data-desktop-open]").forEach((d) => {
@@ -541,7 +484,78 @@
   });
   $$(".feed").forEach((box) => {
     const track = $(".feed__track", box);
-    if (track) liveStrip(box, track, () => (mobile.matches ? "x" : "y"), 40);
+    if (!track) return;
+    if (!$("video[data-src]", track)) return liveStrip(box, track, () => (mobile.matches ? "x" : "y"), 40);
+
+    /* reels jako na telefonu: chvilku hraje jedno video bez zvuku, pak se „odscrolluje“ na další */
+    box.classList.add("is-live");
+    const items = $$(".feed__item", track);
+    track.append(items[0].cloneNode(true)); // kopie prvního kvůli plynulému zacyklení
+    const all = $$(".feed__item", track);
+    const vids = all.map((it) => $("video", it));
+    const HOLD = 3800;
+    let cur = 0;
+    let timer = 0;
+    let seen = false;
+    const load = (v) => {
+      if (v.getAttribute("src")) return;
+      v.muted = true;
+      v.src = v.dataset.src;
+      v.preload = "auto";
+    };
+    const place = (i, anim = true) => {
+      track.classList.toggle("is-snap", !anim);
+      track.style.transform = `translate3d(0, ${-all[i].offsetTop}px, 0)`;
+    };
+    const playAt = (i, from = 0) => {
+      vids.forEach((v, k) => k !== i && v.pause());
+      const v = vids[i];
+      load(v);
+      v.currentTime = from;
+      v.play().catch(() => {});
+      load(vids[(i + 1) % vids.length]);
+    };
+    const loop = () => {
+      clearTimeout(timer);
+      if (!seen || document.hidden) return;
+      timer = setTimeout(() => {
+        cur += 1;
+        place(cur);
+        playAt(cur);
+        if (cur === all.length - 1) {
+          // dojeli jsme na kopii prvního → nenápadně skočit zpět na začátek
+          setTimeout(() => {
+            const t = vids[cur].currentTime;
+            cur = 0;
+            place(0, false);
+            playAt(0, t);
+          }, 850);
+        }
+        loop();
+      }, HOLD);
+    };
+    const stop = () => {
+      clearTimeout(timer);
+      vids.forEach((v) => v.pause());
+    };
+    if (reduce.matches) return; // bez animací zůstanou jen náhledy
+    const startStop = () => {
+      if (seen && !document.hidden) {
+        playAt(cur, vids[cur].currentTime || 0);
+        loop();
+      } else stop();
+    };
+    if (hasIO) {
+      new IntersectionObserver((es) => {
+        seen = es[0].isIntersecting;
+        startStop();
+      }, { threshold: 0.25 }).observe(box);
+    } else {
+      seen = true;
+      startStop();
+    }
+    document.addEventListener("visibilitychange", startStop);
+    window.addEventListener("resize", () => place(cur, false));
   });
 
   /* ---------- reference: jedna po druhé jako střihy z rozhovorů; samy se po chvíli přepnou (dílky, švihnutí) ---------- */
@@ -698,6 +712,56 @@
       if (e.key === "ArrowRight") show(idx + 1);
     });
     dlg.addEventListener("close", () => img.removeAttribute("src"));
+  }
+
+  /* ---------- přehrávač videí v realizacích (video se stáhne až po kliknutí) ---------- */
+  const player = $("#player");
+  if (player && typeof player.showModal === "function") {
+    const box = $("[data-player-media]", player);
+    const title = $("[data-player-title]", player);
+    const prev = $("[data-player-prev]", player);
+    const next = $("[data-player-next]", player);
+    let list = [];
+    let idx = 0;
+    const play = (i) => {
+      idx = (i + list.length) % list.length;
+      const b = list[idx];
+      player.classList.toggle("player--tall", b.hasAttribute("data-tall"));
+      title.textContent = b.dataset.title || "";
+      const v = document.createElement("video");
+      v.src = b.dataset.video;
+      if (b.dataset.poster) v.poster = b.dataset.poster;
+      v.controls = true;
+      v.playsInline = true;
+      v.preload = "auto";
+      box.replaceChildren(v);
+      v.play().catch(() => {});
+    };
+    document.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-video]");
+      if (!b) return;
+      const scope = b.closest(".case") || document;
+      list = $$("[data-video]", scope);
+      prev.hidden = next.hidden = list.length < 2;
+      player._opener = b;
+      play(list.indexOf(b));
+      player.showModal();
+    });
+    prev.addEventListener("click", () => play(idx - 1));
+    next.addEventListener("click", () => play(idx + 1));
+    $("[data-player-close]", player).addEventListener("click", () => player.close());
+    player.addEventListener("click", (e) => {
+      if (e.target === player || e.target.tagName === "FIGURE") player.close();
+    });
+    player.addEventListener("keydown", (e) => {
+      if (list.length < 2) return;
+      if (e.key === "ArrowLeft") play(idx - 1);
+      if (e.key === "ArrowRight") play(idx + 1);
+    });
+    player.addEventListener("close", () => {
+      box.replaceChildren();
+      player._opener?.focus();
+    });
   }
 
   /* ---------- formuláře poptávky ---------- */

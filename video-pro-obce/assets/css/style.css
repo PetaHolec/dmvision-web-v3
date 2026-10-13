@@ -263,7 +263,7 @@ html:not(.js) .nav { position: static; opacity: 1; visibility: visible; transfor
 .hero__title .line--accent { color: var(--blue); }
 .hero__title .line { overflow: hidden; padding-top: .14em; margin-top: -.14em; }
 .hero__title .line > span { display: block; }
-.js .hero__title .line > span { transform: translateY(105%); animation: lineUp 1.1s var(--ease) .95s forwards; }
+.js .hero__title .line > span { transform: translateY(calc(100% + .35em)); animation: lineUp 1.1s var(--ease) .95s forwards; }
 .js .hero__title .line:nth-child(2) > span { animation-delay: 1.07s; }
 .js .hero__title .line:nth-child(3) > span { animation-delay: 1.19s; }
 @keyframes lineUp { to { transform: none; } }
@@ -277,6 +277,9 @@ html:not(.js) .nav { position: static; opacity: 1; visibility: visible; transfor
 .hero__chain { display: flex; flex-wrap: wrap; gap: 4px 0; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .hero__chain li + li::before { content: "→"; margin: 0 .8em; color: var(--blue); }
 .hero__caption { margin: 0; font-size: .75rem; color: rgba(255,255,255,.65); letter-spacing: .04em; }
+/* pata úvodu odsazená od spodních rohů hledáčku (stejně jako REC nahoře); na mobilu spodní rohy schované */
+@media (min-width: 701px) { .hero__foot { padding-inline: calc(var(--gut) + 48px); } }
+@media (max-width: 700px) { .hero__frame .vf--bl, .hero__frame .vf--br { display: none; } }
 @media (max-width: 700px) {
   .hero__specs { display: none; }
   .hero__body { padding-top: calc(var(--hdr) + 72px); padding-top: calc(var(--hdr) + clamp(56px, 6svh, 72px)); }
@@ -284,22 +287,22 @@ html:not(.js) .nav { position: static; opacity: 1; visibility: visible; transfor
 }
 
 /* ==========================================================================
-   SHOWREEL
+   PRODUKCE – obraz, zvuk, střih a grafika v jednom
    ========================================================================== */
-.reel { background: var(--navy-9); color: #fff; padding-block: clamp(64px, 8vw, 120px); overflow: clip; }
-.reel__in { display: grid; gap: clamp(32px, 4vw, 56px); }
+.reel { position: relative; isolation: isolate; display: flex; align-items: center; min-height: clamp(380px, 62svh, 640px); background: var(--navy-9); color: #fff; padding-block: clamp(64px, 8vw, 120px); overflow: clip; }
+/* letecké záběry za textem: čtyři fotky se pomalu prolínají */
+.reel__bg { position: absolute; inset: 0; z-index: -1; }
+.reel__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: reelFade 28s linear infinite; }
+.reel__bg picture:nth-child(2) img { animation-delay: 7s; }
+.reel__bg picture:nth-child(3) img { animation-delay: 14s; }
+.reel__bg picture:nth-child(4) img { animation-delay: 21s; }
+.reel__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(6,17,41,.85) 0%, rgba(6,17,41,.55) 50%, rgba(6,17,41,.7) 100%), linear-gradient(90deg, rgba(6,17,41,.6) 0%, rgba(6,17,41,.2) 75%); }
+@keyframes reelFade { 0% { opacity: 0; transform: scale(1.08); } 5% { opacity: 1; } 25% { opacity: 1; } 30% { opacity: 0; transform: scale(1); } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .reel__bg img { animation: none !important; } .reel__bg picture:first-child img { opacity: 1; } }
+.reel__in { width: 100%; display: grid; gap: clamp(32px, 4vw, 56px); }
 .reel__head { display: grid; gap: 0; }
-.reel__note { color: rgba(255,255,255,.72); max-width: 46ch; margin: 1.25rem 0 0; }
-@media (min-width: 900px) {
-  .reel__head { grid-template-columns: 1fr 1fr; align-items: end; column-gap: 4rem; }
-  .reel__head .eyebrow { grid-column: 1 / -1; }
-  .reel__note { margin: 0 0 .4rem; }
-}
-.player { position: relative; aspect-ratio: 16 / 9; background: #000; overflow: hidden; --s: .86; transform: scale(var(--s)); transform-origin: 50% 30%; box-shadow: 0 40px 120px rgba(0, 150, 255, calc((var(--s) - .86) * 1.2)); }
-.player video, .player iframe { width: 100%; height: 100%; border: 0; }
-.player__poster { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: #000; cursor: pointer; color: #fff; }
-.player__poster img { width: 100%; height: 100%; object-fit: cover; opacity: .82; transition: opacity .4s, transform 1.2s var(--ease); }
-.player__poster:hover img { opacity: 1; transform: scale(1.02); }
+/* nadpis uprostřed výšky, vodorovně kousek vlevo od středu */
+@media (min-width: 900px) { .reel__head { margin-left: 14%; } }
 .play {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   display: inline-flex; align-items: center; gap: 14px; padding: 18px 26px; background: var(--blue); color: var(--navy-9);
@@ -394,20 +397,21 @@ html:not(.js) .nav { position: static; opacity: 1; visibility: visible; transfor
 .work__group { font-size: .75rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--navy); margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; }
 .work__group span { font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--muted); font-size: .9375rem; }
 .work__blocks { display: flex; flex-direction: column; gap: clamp(56px, 6vw, 88px); }
-.work__block + .work__block, html[data-aud="politika"] .work__block--obce { padding-top: 28px; border-top: 1px solid var(--line); }
-html[data-aud="politika"] .work__block--volby { order: -1; padding-top: 0; border-top: 0; }
+.work__block + .work__block { padding-top: 28px; border-top: 1px solid var(--line); }
 .work__grid { display: grid; gap: 20px; }
 @media (min-width: 760px) {
   .work__grid { grid-template-columns: 1fr 1fr; }
   .work__grid .proj--featured { grid-column: 1 / -1; }
 }
-@media (min-width: 1100px) {
-  .work__grid--compact { grid-template-columns: 1fr 1fr; }
-}
 .proj { background: #fff; display: grid; position: relative; }
 .proj__media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--navy); }
 .proj__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
 .proj:hover .proj__media img { transform: scale(1.04); }
+/* náhled videa na výšku: celý snímek uprostřed, za ním rozmazaná kopie */
+.proj__blur { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(22px) brightness(.5) saturate(1.2); transform: scale(1.2); }
+.proj--tall .proj__media picture { position: absolute; inset: 0; z-index: 0; }
+.proj--tall .proj__media picture img { object-fit: contain; }
+.proj--tall:hover .proj__media .proj__blur { transform: scale(1.24); }
 .proj__media .placeholder { font-size: .8125rem; }
 .proj__media .placeholder__label { font-size: clamp(1.25rem, 2.2vw, 1.75rem); }
 .proj__media .placeholder__spec { max-width: 40ch; margin-inline: auto; }
@@ -426,17 +430,20 @@ html[data-aud="politika"] .work__block--volby { order: -1; padding-top: 0; borde
 .proj__text { margin: 0; color: var(--text); }
 .proj__todo { margin: 6px 0 0; font-size: .8125rem; color: #8a5a00; background: #fff5dc; border-left: 3px solid #e0a100; padding: 8px 12px; }
 @media (min-width: 1000px) {
+  .work__grid { grid-auto-rows: 1fr; } /* všechny karty v mřížce stejně vysoké – stejně velké náhledy */
   .proj--featured { grid-template-columns: 1.6fr 1fr; }
   .proj--featured .proj__media { aspect-ratio: auto; min-height: 440px; }
   .proj--featured .proj__body { padding: 40px; align-content: center; }
   .proj--featured .proj__client { font-size: 3.5rem; }
 }
-.proj--compact .proj__media { aspect-ratio: 16 / 9; }
-@media (min-width: 640px) {
-  .proj--compact { grid-template-columns: minmax(180px, 38%) 1fr; }
-  .proj--compact .proj__media { aspect-ratio: auto; min-height: 220px; }
-  .proj--compact .placeholder__label { font-size: 1.1rem; }
-  .proj--compact .proj__client { font-size: 1.75rem; }
+/* velká karta s reels: náhled přesně 9:16, bez rozmazaných okrajů */
+.proj--featured.proj--tall .proj__media { aspect-ratio: 9 / 16; }
+.proj--featured.proj--tall .proj__media picture img { object-fit: cover; }
+@media (min-width: 761px) {
+  .proj--featured.proj--tall { grid-template-columns: clamp(260px, 25vw, 320px) 1fr; }
+  .proj--featured.proj--tall .proj__media { min-height: 0; }
+  .proj--featured.proj--tall .proj__body { padding: clamp(28px, 3.5vw, 48px); align-content: center; }
+  .proj--featured.proj--tall .proj__text { max-width: 62ch; }
 }
 
 /* ==========================================================================
@@ -624,6 +631,9 @@ html[data-aud="politika"] .work__block--volby { order: -1; padding-top: 0; borde
 .modal__close:hover { border-color: #fff; }
 .modal__media { aspect-ratio: 16 / 9; background: #000; }
 .modal__media iframe, .modal__media video { width: 100%; height: 100%; border: 0; }
+/* video na výšku (reels): užší okno, ať se vejde na obrazovku */
+.modal--tall { width: min(440px, calc(100vw - 32px), calc((100svh - 120px) * 9 / 16)); }
+.modal--tall .modal__media { aspect-ratio: 9 / 16; }
 
 /* ==========================================================================
    ANIMACE PŘI SCROLLU
@@ -802,7 +812,6 @@ body::after {
   body::after { animation: none; }
   .hero__media, .hero__body, .hero__foot, .hero__frame { transform: none !important; opacity: 1 !important; }
   .lbox { display: none; }
-  .player { transform: none; }
   .js .cut-in .cut-in__in { clip-path: none; transform: none; }
   .js .hero__title .line > span { transform: none; }
   .phone img, .phone__bar i { animation: none; }
@@ -837,11 +846,6 @@ body::after {
 .rk-chev { position: absolute; }
 .rk-chev svg { display: block; fill: currentColor; overflow: visible; }
 .rk-box { position: absolute; background: #25353C; }
-.rk-caption { position: absolute; transform: translate(-50%, -42%); }
-.rk-caption__box { position: relative; background: rgba(37,53,60,.9); border-radius: 12px; padding: 24px 38px; color: #fff; font-weight: 700; font-size: 54px; line-height: 1.2; text-align: center; white-space: nowrap; }
-.rk-shot { position: absolute; inset: 0; }
-.rk-shot img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
-.rk-shot--b img { object-position: 62% 45%; transform: scale(1.75); transform-origin: 66% 42%; }
 .rk-bands { position: absolute; left: 0; top: 0; overflow: visible; }
 .rk-grid { position: absolute; inset: 0; background-image: radial-gradient(circle, #D7EEF9 3px, transparent 3.6px); background-size: 60px 60px; background-position: -27px -27px; }
 .rk-ring { position: absolute; border-radius: 50%; border-style: solid; box-sizing: border-box; }
@@ -849,6 +853,11 @@ body::after {
 .rk-traveler svg { display: block; fill: currentColor; }
 .rk-logo { position: absolute; fill: currentColor; overflow: visible; }
 .rk-logo use { transform-box: fill-box; transform-origin: center; }
+.rk-caption { position: absolute; transform: translate(-50%, -42%); }
+.rk-caption__box { position: relative; background: rgba(37,53,60,.9); border-radius: 12px; padding: 24px 38px; color: #fff; font-weight: 700; font-size: 54px; line-height: 1.2; text-align: center; white-space: nowrap; }
+.rk-shot { position: absolute; inset: 0; }
+.rk-shot img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
+.rk-shot--b img { object-position: 62% 45%; transform: scale(1.75); transform-origin: 66% 42%; }
 
 @media (max-width: 999.98px) { .rk__phone { width: min(70vw, 320px); } }
 @media (prefers-reduced-motion: reduce) { .rk__bg img { animation: none; } }
@@ -861,12 +870,6 @@ body::after {
 @keyframes focusPull { from { filter: blur(18px) brightness(.55); } 60% { filter: blur(2px) brightness(.9); } }
 
 /* ---------- přepínač publika ---------- */
-.aud { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: 4px; margin-bottom: 22px; margin-bottom: clamp(12px, 2svh, 22px); border: 1px solid rgba(255,255,255,.25); background: rgba(6,17,41,.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.aud__lbl { font-size: .6875rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7); padding: 0 8px 0 6px; }
-.aud__btn { min-height: 40px; padding: 6px 14px; border: 0; background: transparent; color: #fff; font-size: .8125rem; font-weight: 700; cursor: pointer; transition: background .3s var(--ease), color .3s; }
-.aud__btn:hover { background: rgba(255,255,255,.1); }
-.aud__btn[aria-pressed="true"] { background: var(--blue); color: var(--navy-9); }
-html[data-aud="politika"] .svc__row--pol { background: var(--ice); padding-inline: 14px; margin-inline: -14px; }
 
 /* ---------- barvy: před / po ---------- */
 .grade { margin-top: clamp(64px, 8vw, 112px); display: grid; gap: 24px; }
@@ -1058,44 +1061,8 @@ html[data-aud="politika"] .svc__row--pol { background: var(--ice); padding-inlin
   .trust__name { font-size: 1.375rem; }
 }
 
-/* ==========================================================================
-   SHOWREEL – dokud chybí video, filmový záběr s označeným místem
-   ========================================================================== */
-.player__still { position: absolute; inset: 0; overflow: hidden; background: #000; }
-.player__still picture, .player__still img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.player__still img { object-fit: cover; object-position: 50% 40%; filter: saturate(.9) contrast(1.05) brightness(.62); animation: stillPan 26s ease-in-out infinite alternate; }
-@keyframes stillPan { from { transform: scale(1.06) translateX(-1.5%); } to { transform: scale(1.16) translateX(1.5%); } }
-.player__still::before, .player__still::after { content: ""; position: absolute; left: 0; right: 0; height: 8%; background: #000; z-index: 1; }
-.player__still::before { top: 0; }
-.player__still::after { bottom: 0; }
-.player__still .vf { z-index: 2; width: clamp(22px, 3vw, 40px); height: clamp(22px, 3vw, 40px); margin: calc(8% + 14px) clamp(14px, 3vw, 32px); }
-.player__still .vf--tl, .player__still .vf--tr { margin-top: 12%; }
-.player__still .vf--bl, .player__still .vf--br { margin-bottom: 12%; }
-.player__rec, .player__fmt { position: absolute; z-index: 2; top: 2%; display: flex; align-items: center; font-size: clamp(.5625rem, 1vw, .75rem); font-weight: 800; letter-spacing: .14em; color: #fff; }
-.player__rec { left: clamp(14px, 3vw, 32px); }
-.player__fmt { right: clamp(14px, 3vw, 32px); color: rgba(255,255,255,.65); }
-.player__chip { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0; padding: clamp(10px, 1.4vw, 16px) clamp(16px, 2vw, 26px); border: 1.5px solid rgba(255,255,255,.6); background: rgba(6,17,41,.35); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); font-size: clamp(.6875rem, 1vw, .8125rem); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
-
-/* ==========================================================================
-   REALIZACE BEZ NÁHLEDU – filmová klapka místo prázdného pole
-   ========================================================================== */
-.slate { position: absolute; inset: 0; display: grid; grid-template-rows: auto 1fr auto; background: #0b1530; color: #fff; padding: clamp(14px, 2vw, 22px); gap: 12px; overflow: hidden; }
-.slate__clap { display: block; height: 18px; margin: -4px -4px 0; background: repeating-linear-gradient(-55deg, #fff 0 16px, #0b1530 16px 32px); border: 1px solid #fff; transform-origin: 0 100%; }
-.js .proj.is-in .slate__clap { animation: clap 1.3s var(--ease) .4s both; }
-.slate__grid { margin: 0; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(255,255,255,.35); align-self: center; }
-.slate__grid > div { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,.2); min-width: 0; }
-.slate__grid > div:nth-last-child(-n+2) { border-bottom: 0; }
-.slate__grid > div:not(.slate__wide):nth-child(odd) { border-right: 1px solid rgba(255,255,255,.2); }
-.slate__wide { grid-column: 1 / -1; }
-.slate dt { font-size: .5625rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); }
-.slate dd { margin: 2px 0 0; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(1rem, 1.6vw, 1.375rem); line-height: 1.05; overflow-wrap: anywhere; }
-.slate__note { margin: 0; justify-self: end; font-size: .625rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); }
-.proj--compact .slate dd { font-size: 1rem; }
-.proj--compact .slate__grid > div { padding: 6px 10px; }
-/* malý náhled: na klapce jen název scény */
-@media (max-width: 760px) { .slate__grid > div:not(:nth-child(2)) { display: none; } .slate__grid > div:nth-child(2) { border-bottom: 0; } .slate dd { font-size: 1.375rem; } }
+/* animace filmové klapky */
 @keyframes clap { 0% { transform: rotate(0); } 30%, 62% { transform: rotate(-20deg); } 78% { transform: rotate(0); } 88% { transform: rotate(-3deg); } 100% { transform: rotate(0); } }
-.proj__todo { background: transparent; border: 1px dashed #e0a100; border-left-width: 1px; color: #8a5a00; }
 
 /* ==========================================================================
    PROČ D&M – technika jako přehled
@@ -1131,7 +1098,6 @@ html[data-aud="politika"] .svc__row--pol { background: var(--ice); padding-inlin
    ========================================================================== */
 .js .wipe { clip-path: inset(0 0 100% 0); transition: clip-path 1.15s cubic-bezier(.77, 0, .18, 1); }
 .js .wipe.is-in { clip-path: inset(0); }
-.js .player.wipe.is-in { clip-path: inset(-30%); }
 .btn { position: relative; }
 .btn::before { content: ""; position: absolute; inset: -10px; pointer-events: none; opacity: 0; transition: inset .45s var(--ease), opacity .3s;
   background:
@@ -1148,13 +1114,9 @@ html[data-aud="politika"] .svc__row--pol { background: var(--ice); padding-inlin
 
 @media (prefers-reduced-motion: reduce) {
   .js .wipe { clip-path: none; }
-  .player__still img, .js .proj.is-in .slate__clap, .js .final__clapper.is-in .final__clap { animation: none; }
+  .js .final__clapper.is-in .final__clap { animation: none; }
   .js .read__col--video .phone, .js .read__vsmark.reveal { transform: none; }
 }
-/* realizace s odkazem na video, ale bez náhledu: tlačítko dole, ať nezakrývá klapku */
-.proj__media:has(.slate) .play { left: clamp(14px, 2vw, 22px); top: auto; bottom: clamp(14px, 2vw, 22px); transform: none; padding: 12px 18px; }
-.proj__media:has(.slate) .proj__playbtn:hover .play { transform: scale(1.04); }
-.proj__media:has(.proj__playbtn) .slate__note { display: none; }
 
 /* formulář v rozích hledáčku */
 .form > .vf { width: 26px; height: 26px; border-color: var(--blue); }
@@ -1165,24 +1127,3 @@ html[data-aud="politika"] .svc__row--pol { background: var(--ice); padding-inlin
 .js .contact .form > .vf { opacity: 0; transform: scale(1.6); transition: opacity .6s var(--ease), transform .9s var(--ease); }
 .js .contact .form.is-in > .vf { opacity: 1; transform: none; }
 
-/* ==========================================================================
-   REALIZACE JEN JAKO VIDEO (bez textu) – náhled, nebo prázdný „monitor“, dokud video nedodají
-   ========================================================================== */
-.vtile { margin: 0; display: grid; gap: 12px; align-content: start; }
-.vtile__screen { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--navy-9); color: #fff; }
-.vtile__screen > img, .vtile__prev { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.vtile__screen .vf { width: 22px; height: 22px; margin: 14px; }
-.vtile__rec, .vtile__tc { position: absolute; top: 18px; display: flex; align-items: center; font-size: .6875rem; font-weight: 800; letter-spacing: .14em; font-variant-numeric: tabular-nums; }
-.vtile__rec { left: 48px; }
-.vtile__tc { right: 48px; color: rgba(255,255,255,.55); }
-.vtile__wait { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 16px; border: 1px solid rgba(255,255,255,.4); font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; color: rgba(255,255,255,.85); }
-.vtile__screen::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 3px); }
-.vtile__play { position: absolute; inset: 0; width: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; z-index: 1; }
-.vtile__play .play { transition: transform .4s var(--ease); }
-.vtile__play:hover .play { transform: translate(-50%, -50%) scale(1.06); }
-.vtile__ig { position: absolute; inset: 0; z-index: 1; text-decoration: none; }
-.vtile__ig .play { transition: transform .4s var(--ease); }
-.vtile__ig:hover .play { transform: translate(-50%, -50%) scale(1.06); }
-.vtile__cap { display: flex; align-items: center; gap: 10px; font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--navy); }
-.vtile__cap::before { content: ""; width: 20px; height: 2px; background: var(--blue); }
-@media (max-width: 760px) { .work__grid > .vtile { flex: 0 0 86%; scroll-snap-align: start; } }

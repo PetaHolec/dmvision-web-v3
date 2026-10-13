@@ -31,6 +31,7 @@ AddDefaultCharset UTF-8
   AddType image/avif .avif
   AddType image/webp .webp
   AddType font/woff2 .woff2
+  AddType video/mp4 .mp4
   AddType application/manifest+json .webmanifest
   AddType text/plain .txt
 </IfModule>
@@ -53,6 +54,7 @@ AddDefaultCharset UTF-8
   ExpiresByType image/jpeg "access plus 1 month"
   ExpiresByType image/png "access plus 1 month"
   ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
   ExpiresByType application/manifest+json "access plus 1 week"
 </IfModule>
 
