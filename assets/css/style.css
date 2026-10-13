@@ -830,6 +830,76 @@ details[open] > summary .plus {
   }
 }
 
+/* ---------------------------------------------------------------- D&M Vision v číslech (úvod dole, O nás) */
+.nums__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 22px;
+  border-top: 2px solid var(--navy);
+}
+
+.nums__item {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 26px clamp(14px, 2vw, 28px) 4px 0;
+}
+
+.nums__item + .nums__item {
+  padding-left: clamp(14px, 2vw, 28px);
+  border-left: 1px solid var(--line);
+}
+
+.nums__n {
+  color: var(--navy);
+  font: 900 clamp(56px, 7.2vw, 118px)/.82 var(--display);
+  white-space: nowrap;
+}
+
+.nums__n em {
+  color: var(--blue);
+  font-style: normal;
+}
+
+.nums__n small {
+  margin-right: .12em;
+  color: var(--blue);
+  font-size: .42em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.nums__t {
+  max-width: 22ch;
+  color: var(--muted);
+  font: 800 12px/1.35 var(--sans);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.nums--line {
+  padding-bottom: 0;
+}
+
+@media (max-width: 760px) {
+  .nums__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nums__item:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .nums__item:nth-child(3) {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+}
+
 /* ---------------------------------------------------------------- menu (vysouvací panel) */
 .menu {
   position: fixed;
@@ -3623,6 +3693,33 @@ details[open] > summary .plus {
   text-transform: uppercase;
 }
 
+.frame9__play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.frame9__play .rtile__play {
+  opacity: .9;
+}
+
+.frame9__play:hover .rtile__play,
+.frame9__play:focus-visible .rtile__play {
+  background: #fff;
+  color: var(--navy);
+  opacity: 1;
+}
+
+.frames__note {
+  margin-top: 30px;
+  color: rgba(255, 255, 255, .72);
+  font-size: 14px;
+}
+
 .frames .frame9:nth-child(odd) {
   transform: translateY(18px);
 }
@@ -5032,6 +5129,10 @@ details[open] > summary .plus {
   transition: transform 1.1s var(--ease);
 }
 
+.case__text + .case__text {
+  margin-top: 12px;
+}
+
 .case__media:has(.case__play:hover) img {
   transform: scale(1.03);
 }
@@ -5120,19 +5221,6 @@ details[open] > summary .plus {
   font: 800 10.5px/1.25 var(--sans);
   letter-spacing: .1em;
   text-transform: uppercase;
-}
-
-/* sada reels na stránce služby (Reels Day) */
-.rtiles--set {
-  display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: 12px;
-}
-
-@media (max-width: 1100px) {
-  .rtiles--set {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
 }
 
 /* zakázka s doplňkovými reels: reels pod popisem vedle hlavního záběru */

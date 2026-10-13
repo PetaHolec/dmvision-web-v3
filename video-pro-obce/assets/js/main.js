@@ -558,6 +558,44 @@
     });
   }
 
+  /* ---------- ukázka videa ve Službách: hraje bez zvuku, jde pozastavit a pustit zvuk ---------- */
+  $$("[data-clip-video]").forEach((fig) => {
+    const v = $("video", fig);
+    const pb = $("[data-clip-pause]", fig);
+    const sb = $("[data-clip-sound]", fig);
+    let held = reduceMotion.matches; // bez animací se samo nespustí
+    let seen = false;
+    const load = () => {
+      if (v.getAttribute("src")) return;
+      v.muted = true;
+      v.src = v.dataset.src;
+    };
+    const sync = () => {
+      pb.setAttribute("aria-pressed", String(v.paused));
+      $("[data-label]", pb).textContent = v.paused ? "Přehrát" : "Pozastavit";
+      sb.setAttribute("aria-pressed", String(!v.muted));
+      $("[data-label]", sb).textContent = v.muted ? "Zapnout zvuk" : "Vypnout zvuk";
+    };
+    const play = () => { load(); v.play().catch(() => {}); };
+    pb.addEventListener("click", () => {
+      if (v.paused) { held = false; play(); } else { held = true; v.pause(); }
+    });
+    sb.addEventListener("click", () => {
+      v.muted = !v.muted;
+      if (!v.muted) { held = false; play(); }
+      sync();
+    });
+    ["play", "pause", "volumechange"].forEach((ev) => v.addEventListener(ev, sync));
+    sync();
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([en]) => {
+        seen = en.isIntersecting;
+        if (seen && !held) play();
+        else if (!seen) v.pause();
+      }, { threshold: 0.35 }).observe(fig);
+    } else if (!held) play();
+  });
+
   /* ---------- porovnání barev: jezdec se sám lehce houpe, dokud na něj nikdo nesáhne ---------- */
   $$("[data-grade-range]").forEach((r) => {
     const frame = r.parentElement;
