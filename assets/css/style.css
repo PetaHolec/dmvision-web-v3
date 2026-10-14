@@ -1499,6 +1499,15 @@ details[open] > summary .plus {
   margin-bottom: 18px;
 }
 
+/* realizace: pás log hned pod seznamem zakázek (na úvodu je pod hero, tam se nic nemění) */
+.sec:has(+ .logos-band) {
+  padding-bottom: clamp(40px, 4.5vw, 64px);
+}
+
+.sec + .logos-band {
+  border-top: 1px solid var(--line);
+}
+
 .logos-band__marquee {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -3108,6 +3117,13 @@ svg.sico * {
 .stack__img--trio img {
   aspect-ratio: 9 / 16;
   height: auto;
+}
+
+/* na tabletu je text vedle fotky delší než fotka – obojí na střed */
+@media (max-width: 1100px) {
+  .stack__body {
+    align-items: center;
+  }
 }
 
 .stack__img .vf {
@@ -5720,6 +5736,164 @@ svg.sico * {
   color: #fff;
 }
 
+/* realizace: na konci „A mnoho dalšího“ – volné políčko pro další projekt (bez data-tags, filtry ho neschovají) */
+.more__slot {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 16px;
+  padding: 64px 28px;
+  isolation: isolate;
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+
+.more__slot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, transparent calc(33.33% - .5px), rgba(255, 255, 255, .08) 0 calc(33.33% + .5px), transparent 0 calc(66.66% - .5px), rgba(255, 255, 255, .08) 0 calc(66.66% + .5px), transparent 0),
+    linear-gradient(180deg, transparent calc(33.33% - .5px), rgba(255, 255, 255, .08) 0 calc(33.33% + .5px), transparent 0 calc(66.66% - .5px), rgba(255, 255, 255, .08) 0 calc(66.66% + .5px), transparent 0);
+}
+
+.more__slot .vf {
+  --c: var(--sky);
+  --a: 32px;
+  inset: 16px;
+}
+
+.more__slot:is(:hover, :focus-visible) .vf {
+  inset: 26px;
+}
+
+.more__rec {
+  position: absolute;
+  top: 42px;
+  left: 48px;
+}
+
+.more__plus {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border: 1.5px solid rgba(255, 255, 255, .3);
+  color: var(--sky);
+  transition: transform .7s var(--ease), background .3s, border-color .3s, color .3s;
+}
+
+.more__plus .ico {
+  width: 30px;
+  height: 30px;
+}
+
+.more__slot:is(:hover, :focus-visible) .more__plus {
+  transform: rotate(90deg);
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+}
+
+.more__label {
+  max-width: 13ch;
+  font: 800 clamp(32px, 3.6vw, 58px)/.95 var(--display);
+  text-transform: uppercase;
+}
+
+.more__label em {
+  color: var(--sky);
+  font-style: normal;
+}
+
+.more__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--sky-2);
+  font: 800 12px/1 var(--sans);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.more__go .ico {
+  width: 16px;
+  height: 16px;
+  transition: transform .4s var(--ease);
+}
+
+.more__slot:is(:hover, :focus-visible) .more__go .ico {
+  transform: translate(3px, -3px);
+}
+
+.case--more .case__body {
+  align-self: center;
+}
+
+.more__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.more__links a {
+  display: inline-block;
+  padding: 10px 13px;
+  background: var(--ice);
+  color: var(--navy);
+  font: 700 14px/1 var(--sans);
+  text-decoration: none;
+  transition: background .25s, color .25s;
+}
+
+.more__links a:hover,
+.more__links a:focus-visible {
+  background: var(--blue);
+  color: #fff;
+}
+
+.more__btn {
+  margin-top: 26px;
+}
+
+@media (max-width: 760px) {
+  .more__slot {
+    aspect-ratio: auto;
+    gap: 14px;
+    padding: 64px 22px 52px;
+  }
+
+  .more__rec {
+    top: 28px;
+    left: 30px;
+  }
+
+  .more__plus {
+    width: 54px;
+    height: 54px;
+  }
+
+  .more__plus .ico {
+    width: 24px;
+    height: 24px;
+  }
+
+  .more__links {
+    margin-top: 16px;
+  }
+
+  .more__btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 /* přehrávač videa (vzhled jako zvětšená fotka v galerii) */
 .player__media video {
   display: block;
@@ -5783,8 +5957,21 @@ svg.sico * {
     flex-basis: 48%;
   }
 
+  /* jeden reels (Chvátal, Karaoke) stejně velký jako ostatní reels v realizacích */
   .case--tall .case__media {
-    width: 72%;
+    width: 38%;
+  }
+
+  .case--tall .case__media .vf {
+    display: none;
+  }
+
+  .case--tall .case__playbtn {
+    width: 42px;
+    height: 42px;
+    justify-content: center;
+    padding: 0;
+    font-size: 0;
   }
 }
 
