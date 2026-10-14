@@ -129,6 +129,7 @@ code { font-size: .9em; }
 .btn--dark:hover { --bg: var(--blue); --fg: var(--navy-9); --bd: var(--blue); }
 .btn__arr { display: inline-block; transition: transform .35s var(--ease); }
 .btn:hover .btn__arr { transform: translateX(4px); }
+.btn:hover .btn__arr--down { transform: translateY(3px); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .link-arrow { font-weight: 700; color: var(--blue-ink); text-decoration: none; border-bottom: 2px solid currentColor; padding-bottom: 2px; }
 .link-arrow:hover { color: var(--navy); }
