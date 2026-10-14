@@ -1,22 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://dmvision.cz/</loc><lastmod>2026-09-29</lastmod><priority>1.0</priority></url>
-  <url><loc>https://dmvision.cz/sluzby/</loc><lastmod>2026-09-29</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/sluzby/nataceni-videi/</loc><lastmod>2026-09-29</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/sluzby/reels-day/</loc><lastmod>2026-09-29</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/sluzby/foceni/</loc><lastmod>2026-09-29</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/sluzby/sprava-socialnich-siti/</loc><lastmod>2026-09-29</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/sluzby/marketing-a-reklama/</loc><lastmod>2026-09-29</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/sluzby/kompletni-marketing-pro-firmy/</loc><lastmod>2026-09-29</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/sluzby/videozpravodaj-pro-obce/</loc><lastmod>2026-09-29</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/sluzby/podcast/</loc><lastmod>2026-10-03</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/video-pro-obce/</loc><lastmod>2026-10-12</lastmod><priority>0.9</priority></url>
-  <url><loc>https://dmvision.cz/video-pro-obce/volebni-videa/</loc><lastmod>2026-10-12</lastmod><priority>0.8</priority></url>
-  <url><loc>https://dmvision.cz/video-pro-obce/videozpravodaj-brno-venkov/</loc><lastmod>2026-10-12</lastmod><priority>0.8</priority></url>
-  <url><loc>https://dmvision.cz/realizace/</loc><lastmod>2026-09-29</lastmod><priority>0.8</priority></url>
-  <url><loc>https://dmvision.cz/galerie/</loc><lastmod>2026-09-29</lastmod><priority>0.7</priority></url>
-  <url><loc>https://dmvision.cz/o-nas/</loc><lastmod>2026-09-29</lastmod><priority>0.7</priority></url>
-  <url><loc>https://dmvision.cz/poptavka/</loc><lastmod>2026-09-29</lastmod><priority>0.8</priority></url>
-  <url><loc>https://dmvision.cz/kontakt/</loc><lastmod>2026-09-29</lastmod><priority>0.8</priority></url>
-  <url><loc>https://dmvision.cz/zasady-ochrany-osobnich-udaju/</loc><lastmod>2026-09-29</lastmod><priority>0.3</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url><loc>https://dmvision.cz/</loc><lastmod>2026-10-14</lastmod><priority>1.0</priority></url>
+  <url><loc>https://dmvision.cz/sluzby/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://dmvision.cz/sluzby/nataceni-videi/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://dmvision.cz/sluzby/reels-day/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/volantis-pribeh-pilota-poster.webp</video:thumbnail_loc>
+      <video:title>Volantis · Příběh pilota</video:title>
+      <video:description>Reels pro leteckou školu Volantis Professional Flight School: příběh pilota. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/volantis-pribeh-pilota.mp4</video:content_loc>
+      <video:duration>65</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/volantis-ppl-poster.webp</video:thumbnail_loc>
+      <video:title>Volantis · PPL</video:title>
+      <video:description>Reels pro leteckou školu Volantis Professional Flight School o pilotní licenci PPL. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/volantis-ppl.mp4</video:content_loc>
+      <video:duration>38</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/volantis-atpl-teorie-poster.webp</video:thumbnail_loc>
+      <video:title>Volantis · ATPL teorie</video:title>
+      <video:description>Reels pro leteckou školu Volantis Professional Flight School o teorii k ATPL. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/volantis-atpl-teorie.mp4</video:content_loc>
+      <video:duration>27</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/volantis-vfr-ifr-poster.webp</video:thumbnail_loc>
+      <video:title>Volantis · VFR / IFR</video:title>
+      <video:description>Reels pro leteckou školu Volantis Professional Flight School o rozdílu mezi VFR a IFR. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/volantis-vfr-ifr.mp4</video:content_loc>
+      <video:duration>24</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/volantis-go-around-poster.webp</video:thumbnail_loc>
+      <video:title>Volantis · Go-around</video:title>
+      <video:description>Reels pro leteckou školu Volantis Professional Flight School o manévru go-around. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/volantis-go-around.mp4</video:content_loc>
+      <video:duration>22</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/volantis-tankovani-letadla-poster.webp</video:thumbnail_loc>
+      <video:title>Volantis · Tankování letadla</video:title>
+      <video:description>Reels pro leteckou školu Volantis Professional Flight School o tankování letadla. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/volantis-tankovani-letadla.mp4</video:content_loc>
+      <video:duration>43</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/volantis-trubice-poster.webp</video:thumbnail_loc>
+      <video:title>Volantis · Trubice</video:title>
+      <video:description>Reels pro leteckou školu Volantis Professional Flight School: trubice. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/volantis-trubice.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/volantis-english-poster.webp</video:thumbnail_loc>
+      <video:title>Volantis · English</video:title>
+      <video:description>Reels pro leteckou školu Volantis Professional Flight School o angličtině v letectví. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/volantis-english.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url><loc>https://dmvision.cz/sluzby/foceni/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://dmvision.cz/sluzby/sprava-socialnich-siti/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://dmvision.cz/sluzby/marketing-a-reklama/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://dmvision.cz/sluzby/kompletni-marketing-pro-firmy/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://dmvision.cz/sluzby/videozpravodaj-pro-obce/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://dmvision.cz/sluzby/podcast/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://dmvision.cz/video-pro-obce/</loc><lastmod>2026-10-14</lastmod><priority>0.9</priority></url>
+  <url><loc>https://dmvision.cz/video-pro-obce/volebni-videa/</loc><lastmod>2026-10-14</lastmod><priority>0.8</priority></url>
+  <url><loc>https://dmvision.cz/video-pro-obce/videozpravodaj-brno-venkov/</loc><lastmod>2026-10-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://dmvision.cz/realizace/</loc><lastmod>2026-10-14</lastmod><priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/volantis-pribeh-pilota-poster.webp</video:thumbnail_loc>
+      <video:title>Volantis · Příběh pilota</video:title>
+      <video:description>Reels pro leteckou školu Volantis Professional Flight School: příběh pilota. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/volantis-pribeh-pilota.mp4</video:content_loc>
+      <video:duration>65</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/sft-2026-aftermovie-poster.webp</video:thumbnail_loc>
+      <video:title>Samsung Solve for Tomorrow 2025/26 · aftermovie</video:title>
+      <video:description>Aftermovie soutěže Samsung Solve for Tomorrow 2025/26 – od Design Thinking workshopů po finální prezentace v Praze. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/sft-2026-aftermovie.mp4</video:content_loc>
+      <video:duration>60</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/sft-2026-reels-green-tablets-poster.webp</video:thumbnail_loc>
+      <video:title>Samsung Solve for Tomorrow · tým Green tablets</video:title>
+      <video:description>Reels ze soutěže Samsung Solve for Tomorrow 2025/26, ve kterém finálový tým Green tablets představuje svůj nápad. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/sft-2026-reels-green-tablets.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/sft-2026-reels-inovateam-poster.webp</video:thumbnail_loc>
+      <video:title>Samsung Solve for Tomorrow · Inovateam</video:title>
+      <video:description>Reels ze soutěže Samsung Solve for Tomorrow 2025/26, ve kterém finálový tým Inovateam představuje svůj nápad. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/sft-2026-reels-inovateam.mp4</video:content_loc>
+      <video:duration>17</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/rakfest-2026-aftermovie-poster.webp</video:thumbnail_loc>
+      <video:title>RakFest 2026 · aftermovie</video:title>
+      <video:description>Aftermovie festivalu RakFest 2026 s dronovými záběry – umělci, program i návštěvníci. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/rakfest-2026-aftermovie.mp4</video:content_loc>
+      <video:duration>126</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/rakfest-2026-reels-poster.webp</video:thumbnail_loc>
+      <video:title>RakFest 2026 · reels</video:title>
+      <video:description>Reels z festivalu RakFest 2026. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/rakfest-2026-reels.mp4</video:content_loc>
+      <video:duration>39</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/ja-award-2026-poster.webp</video:thumbnail_loc>
+      <video:title>JA Award Ceremony 2026</video:title>
+      <video:description>Reels ze slavnostního večera JA Award Ceremony 11. 6. 2026 – předávání ocenění i atmosféra večera. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/ja-award-2026.mp4</video:content_loc>
+      <video:duration>25</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/ja-expo-poster.webp</video:thumbnail_loc>
+      <video:title>Veletrh JA Expo · video</video:title>
+      <video:description>Video s titulky z veletrhu studentských firem JA Expo 2025/26: stánky studentských firem, porota a rozhovor s ředitelem JA Czech Martinem Smržem. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/ja-expo.mp4</video:content_loc>
+      <video:duration>87</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/karaoke-party-poster.webp</video:thumbnail_loc>
+      <video:title>Největší karaoke party · promo reels</video:title>
+      <video:description>Promo reels pro Největší karaoke party ve stylu pěvecké soutěže s porotou. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/karaoke-party.mp4</video:content_loc>
+      <video:duration>46</video:duration>
+      <video:publication_date>2026-10-13T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/vinarstvi-dufek-prohlidka-sklepu-poster.webp</video:thumbnail_loc>
+      <video:title>Vinařství Dufek · prohlídka sklepa</video:title>
+      <video:description>Reels pro Vinařství Dufek: prohlídka vinného sklepa. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/vinarstvi-dufek-prohlidka-sklepu.mp4</video:content_loc>
+      <video:duration>101</video:duration>
+      <video:publication_date>2026-10-14T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/assets/video/vinarstvi-dufek-balicky-vin-poster.webp</video:thumbnail_loc>
+      <video:title>Vinařství Dufek · balíčky vín</video:title>
+      <video:description>Reels s titulky pro Vinařství Dufek, které představuje balíčky vín z e-shopu. Natočila a sestříhala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/assets/video/vinarstvi-dufek-balicky-vin.mp4</video:content_loc>
+      <video:duration>13</video:duration>
+      <video:publication_date>2026-10-14T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url><loc>https://dmvision.cz/galerie/</loc><lastmod>2026-10-14</lastmod><priority>0.7</priority></url>
+  <url><loc>https://dmvision.cz/o-nas/</loc><lastmod>2026-10-14</lastmod><priority>0.7</priority></url>
+  <url><loc>https://dmvision.cz/poptavka/</loc><lastmod>2026-10-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://dmvision.cz/kontakt/</loc><lastmod>2026-10-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://dmvision.cz/zasady-ochrany-osobnich-udaju/</loc><lastmod>2026-10-13</lastmod><priority>0.3</priority></url>
 </urlset>

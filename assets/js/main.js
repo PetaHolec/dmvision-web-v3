@@ -667,6 +667,7 @@
       $$("[data-filter]", group).forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
       move(btn);
       const f = btn.dataset.filter;
+      target.dataset.active = f; // galerie: jiná mřížka pro samotná videa a reels
       let shown = 0;
       items.forEach((it) => {
         const match = f === "vse" || it.dataset.tags.split(" ").includes(f);
@@ -741,7 +742,7 @@
       const b = e.target.closest("[data-video]");
       if (!b) return;
       const scope = b.closest(".case") || document;
-      list = $$("[data-video]", scope);
+      list = $$("[data-video]", scope).filter((x) => !x.hidden); // v galerii jen videa z vybraného filtru
       prev.hidden = next.hidden = list.length < 2;
       player._opener = b;
       play(list.indexOf(b));
