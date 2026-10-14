@@ -172,7 +172,7 @@
       const who = p.client.split(" · "), kinds = p.kind.split(" a ");
       return who.length > 1 && kinds.length === who.length
         ? who.map((c, i) => ({ client: c, kind: kinds[i].charAt(0).toUpperCase() + kinds[i].slice(1), group: p.group }))
-        : [{ client: p.client, kind: p.kind, group: p.group }];
+        : [{ client: p.client, kind: p.trustKind || p.kind, group: p.group }];
     });
     trust.innerHTML = names.map((p) => `
       <li class="trust__item reveal" data-group="${esc(p.group)}">

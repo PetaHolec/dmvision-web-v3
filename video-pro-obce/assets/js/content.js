@@ -125,6 +125,7 @@ window.DMV = {
               (Instagram se otevírá v novém okně, nic se nenačítá z Meta předem)
      todo:    co je potřeba doplnit (zobrazí se v placeholderu)
      noTrust:   true = jméno se nezobrazí v pásu „Natáčeli jsme pro“ – chybí souhlas
+     trustKind: popisek nad jménem v pásu „Natáčeli jsme pro“, když má být jiný než kind
      noCard:    true = jen v pásu „Natáčeli jsme pro“, bez karty v Realizacích (chybí video) */
   projects: [
     {
@@ -170,7 +171,7 @@ window.DMV = {
     },
     {
       id: "chvatal",
-      noTrust: true,
+      trustKind: "Brno blíž lidem",
       group: "volby",
       client: "Filip Chvátal",
       kind: "Kandidát na starostu MČ Brno-střed",
@@ -185,7 +186,6 @@ window.DMV = {
     },
     {
       id: "kol",
-      noTrust: true,
       group: "volby",
       client: "Kuřimská občanská liga",
       kind: "Politický subjekt",
