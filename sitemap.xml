@@ -187,6 +187,51 @@
       <video:publication_date>2026-10-14T12:00:00+02:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/video-pro-obce/assets/video/volebni-video-filip-chvatal-poster.webp</video:thumbnail_loc>
+      <video:title>Filip Chvátal · volební video</video:title>
+      <video:description>Volební video Filipa Chvátala, kandidáta na starostu MČ Brno-střed, pro komunální volby 2026 – představení Filipa i jeho týmu kandidátů. Natočila a zpracovala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/video-pro-obce/assets/video/volebni-video-filip-chvatal.mp4</video:content_loc>
+      <video:duration>53</video:duration>
+      <video:publication_date>2026-10-14T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/video-pro-obce/assets/video/ricany-svc-rubiko-hasicka-poster.webp</video:thumbnail_loc>
+      <video:title>Říčany · videozpravodaj o SVČ Rubiko</video:title>
+      <video:description>Díl videozpravodaje obce Říčany u Brna o středisku volného času Rubiko. Natočila a zpracovala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/video-pro-obce/assets/video/ricany-svc-rubiko-hasicka.mp4</video:content_loc>
+      <video:duration>52</video:duration>
+      <video:publication_date>2026-10-14T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/video-pro-obce/assets/video/ricany-jmenovka-poster.webp</video:thumbnail_loc>
+      <video:title>Říčany · jmenovka starosty</video:title>
+      <video:description>Animovaná jmenovka starosty obce Říčany z grafické sady obce. Natočila a zpracovala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/video-pro-obce/assets/video/ricany-jmenovka.mp4</video:content_loc>
+      <video:duration>6</video:duration>
+      <video:publication_date>2026-10-14T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/video-pro-obce/assets/video/ricany-pozvanka-rakfest-poster.webp</video:thumbnail_loc>
+      <video:title>Říčany · pozvánka na RakFest 2026</video:title>
+      <video:description>Animovaná pozvánka na RakFest 2026 v Říčanech. Natočila a zpracovala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/video-pro-obce/assets/video/ricany-pozvanka-rakfest.mp4</video:content_loc>
+      <video:duration>6</video:duration>
+      <video:publication_date>2026-10-14T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://dmvision.cz/video-pro-obce/assets/video/ricany-hasicka-poster.webp</video:thumbnail_loc>
+      <video:title>Říčany · Hasička × Říčany</video:title>
+      <video:description>Animace log Hasička a Říčany z grafické sady obce. Natočila a zpracovala D&amp;M Vision.</video:description>
+      <video:content_loc>https://dmvision.cz/video-pro-obce/assets/video/ricany-hasicka.mp4</video:content_loc>
+      <video:duration>5</video:duration>
+      <video:publication_date>2026-10-14T12:00:00+02:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url><loc>https://dmvision.cz/galerie/</loc><lastmod>2026-10-14</lastmod><priority>0.7</priority></url>
   <url><loc>https://dmvision.cz/o-nas/</loc><lastmod>2026-10-14</lastmod><priority>0.7</priority></url>

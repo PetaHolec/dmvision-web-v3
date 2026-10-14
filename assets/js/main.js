@@ -735,6 +735,8 @@
       v.controls = true;
       v.playsInline = true;
       v.preload = "auto";
+      // data-start="11.4": video začne až od daného místa (např. jen dronové záběry)
+      if (b.dataset.start) v.addEventListener("loadedmetadata", () => { v.currentTime = Number(b.dataset.start); }, { once: true });
       box.replaceChildren(v);
       v.play().catch(() => {});
     };
